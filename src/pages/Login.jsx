@@ -53,11 +53,11 @@ export const Login = () => {
   return (
     <div className='w-full h-[100vh] flex items-center justify-center p-6'>
 
-      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex bg-  overflow-hidden shadow-xl '>
+      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex border rounded-xl overflow-hidden shadow-xl '>
 
         {/* LEFT SIDE  */}
 
-        <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center  border-l rounded-l-xl border-y'>
+        <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center'>
 
           <div className='w-full flex gap-2 items-center mb-4'>
             <img
