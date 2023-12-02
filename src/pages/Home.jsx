@@ -15,6 +15,7 @@ import { MdDownloadDone } from "react-icons/md";
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import { IoPersonAdd } from "react-icons/io5";
 import toast from 'react-hot-toast';
+import { DownBar } from '../components/DownBar';
 
 
 export const Home = () => {
@@ -159,7 +160,7 @@ export const Home = () => {
       console.log(error);
     }
   };
-  
+
   const getUser = async () => {
 
     const res = await getUserInfo(user?.token);
@@ -182,11 +183,11 @@ export const Home = () => {
   return (
     <>
 
-      <div className='home w-full px-0 lg:px-10 pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor'>
+      <div className='w-full px-[2px] lg:px-10 md:pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor'>
 
         <TopBar />
 
-        <div className="w-full flex gap-2 lg:gap-4 pt-5 pb-10 h-full">
+        <div className="w-full flex gap-2 lg:gap-4 pt-2 md:pt-5 h-full">
 
           {/* Left */}
 
@@ -199,7 +200,7 @@ export const Home = () => {
 
           {/* Center */}
 
-          <div className='flex-1 h-full px-4 flex flex-col gap-8 overflow-y-auto rounded-lg'>
+          <div className='flex-1 h-full md:px-4 flex flex-col gap-2  md:gap-8 overflow-y-auto md:rounded-lg'>
 
             <form onSubmit={handleSubmit(handlePostSubmit)} className='px-4 rounded-lg border text-ascent-2 bg-bg2'>
 
@@ -378,11 +379,11 @@ export const Home = () => {
                       <div className='flex gap-1'>
                         <button onClick={() => handlefriendReq(friend?._id)} className='text-blue p-1 rounded' >
 
-                          {friendRequest?.find((item) => item.requestFrom._id === friend?._id ) ? (
+                          {friendRequest?.find((item) => item.requestFrom._id === friend?._id) ? (
                             <MdDownloadDone size={25} />
-                            ) : (
+                          ) : (
                             <IoPersonAdd size={25} />
-                            )}
+                          )}
 
                         </button>
 
@@ -397,6 +398,8 @@ export const Home = () => {
           </div>
 
         </div>
+
+        <DownBar />
 
       </div>
 

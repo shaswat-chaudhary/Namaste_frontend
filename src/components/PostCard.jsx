@@ -187,7 +187,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
     };
 
     return (
-        <div className='mb-2 p-4 rounded-lg border text-ascent-2 bg-bg2'>
+        <div className='md:mb-2 p-4 rounded-lg border text-ascent-2 bg-bg2'>
             
 
             <div className='flex gap-3 items-center mb-2 '>
@@ -196,7 +196,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
                 </Link>
 
-                <div className='w-full flex justify-between '>
+                <div className='w-full flex-col md:flex justify-between '>
                     <div className=''>
                         <Link to={'/profile/' + post?.userId?._id}>
                             <p className='font-medium text-lg text-ascent-1'>

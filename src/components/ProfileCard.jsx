@@ -5,7 +5,11 @@ import { UpdateProfile } from '../redux/userSlice';
 import { LiaEditSolid } from 'react-icons/lia'
 import { BsBriefcase, BsPersonFillAdd } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
+import { IoLogOut } from "react-icons/io5";
+import { Logout } from '../redux/userSlice';
+
 import moment from 'moment';
+import { ThemeMode } from './ThemeMode';
 
 export const ProfileCard = ({ user }) => {
 
@@ -19,10 +23,6 @@ export const ProfileCard = ({ user }) => {
         <div className='w-full border flex flex-col items-center rounded-lg px-6 py-4 shadow-sm bg-bg2 text-ascent-2'>
 
             <div className='w-full flex items-center justify-between border-b pb-3'>
-
-                <div>
-                    { }
-                </div>
 
                 <Link to={"/profile/" + user?.user?._id} className='flex gap-2 w-[90%]'>
 
@@ -49,7 +49,7 @@ export const ProfileCard = ({ user }) => {
 
                                 <LiaEditSolid onClick={() => dispatch(UpdateProfile(true))}
                                     size={22}
-                                className='text-ascent-1 hover:text-blue transition duration-150 ease-in-out'/>
+                                    className='text-ascent-1 hover:text-blue transition duration-150 ease-in-out' />
 
                                 <span class="hidden text-ascent-1 absolute bg-bgColor text-black px-3 py-1 rounded-md group-hover:block top-0 right-8 font-semibold transition duration-300 ease-in-out">Edit</span>
                             </button>
@@ -82,7 +82,7 @@ export const ProfileCard = ({ user }) => {
                 </div>
             </div>
 
-            <div className='w-full flex flex-col gap-2 py-4'>
+            <div className='w-full flex flex-col gap-2 py-4 border-b'>
 
                 <p className='flex items-center justify-between'>
                     <span className='text-ascent-2  text-xl'>Friends</span>
@@ -101,6 +101,18 @@ export const ProfileCard = ({ user }) => {
                     <span className='text-ascent-1 text-base'>{moment(user?.createdAt).fromNow()}</span>
                 </div>
             </div>
+
+            <div className='flex md:hidden justify-between items-center w-full px-4 py-2 mt-5 bg-bgColor rounded-lg text-ascent-1'>
+                <span className='font-semibold text-ascent-1'>Log Out</span>
+                <IoLogOut onClick={() => dispatch(Logout())} size={25} />
+            </div>
+            
+            <div className='flex md:hidden justify-between items-center w-full px-4 py-2 mt-5 bg-bgColor rounded-lg text-ascent-1'>
+                <span className='font-semibold text-ascent-1'>Theme Mode</span>
+                <ThemeMode />
+            </div>
+
+            
 
         </div>
     )
