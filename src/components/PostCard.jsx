@@ -187,36 +187,36 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
     };
 
     return (
-        <div className='md:mb-2 p-4 rounded-lg border text-ascent-2 bg-bg2'>
+        <div className='md:mb-2 p-1 md:p-2 rounded-lg border text-ascent-2 bg-bg2'>
             
 
-            <div className='flex gap-3 items-center mb-2 '>
+            <div className='flex gap-3 items-center mb-2 md:p-1 md:pl-2 '>
                 <Link to={'/profile/' + post?.userId?._id}>
-                    <img src={post?.userId?.profileUrl} alt={post?.userId?.firstName} className='w-16 h-14 rounded-full object-cover' />
+                    <img src={post?.userId?.profileUrl} alt={post?.userId?.firstName} className='w-12 h-10 md:w-16 md:h-14 rounded-full object-cover' />
 
                 </Link>
 
-                <div className='w-full flex-col md:flex justify-between '>
+                <div className='w-full flex flex-col md:flex justify-between '>
                     <div className=''>
                         <Link to={'/profile/' + post?.userId?._id}>
-                            <p className='font-medium text-lg text-ascent-1'>
+                            <p className='font-medium md:text-lg text-ascent-1'>
                                 {post?.userId?.firstName} {post?.userId?.lastName}
                             </p>
                         </Link>
-                        <span className='text-ascent-2'>
+                        <p className='text-ascent-2 text-xs md:text-base'>
                             {post?.userId?.location}
-                        </span>
+                        </p>
                     </div>
 
                     <div className='flex justify-between items-center'>
-                        <span className='text-ascent-2 text-base'>{moment(post?.createdAt).fromNow()}</span>
+                        <span className='text-ascent-2 text-[8px] md:text-base'>{moment(post?.createdAt).fromNow()}</span>
                     </div>
                 </div>
 
             </div>
 
             <div>
-                <p className='text-ascent-1 '>
+                <p className='text-ascent-1 font-normal '>
                     {
                         showAll === post?._id ? post?.description : post?.description?.slice(0, 200)
                     }
@@ -244,14 +244,14 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     post?.image && (
                         <img src={post?.image}
                             alt="post image"
-                            className='w-full mt-2 rounded-lg' />
+                            className='w-full mt-2' />
                     )
                 }
             </div>
 
             <div className='mt-4 flex justify-between items-center px-3 py-2 text-ascent-2 text-base border-t '>
 
-                <p className='flex gap-2 items-center text-base cursor-pointer text-ascent-1'
+                <p className='flex gap-2 items-center text-sm md:text-base cursor-pointer text-ascent-1'
                     onClick={() => handleLike('/posts/like/' + post?._id)}>
 
                     {post?.likes?.includes(user?._id)

@@ -183,7 +183,7 @@ export const Home = () => {
   return (
     <>
 
-      <div className='w-full px-[2px] lg:px-10 md:pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor'>
+      <div className='w-full lg:px-10 md:pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor'>
 
         <TopBar />
 
@@ -200,22 +200,22 @@ export const Home = () => {
 
           {/* Center */}
 
-          <div className='flex-1 h-full md:px-4 flex flex-col gap-2  md:gap-8 overflow-y-auto md:rounded-lg'>
+          <div className='flex-1 h-full px-[2px] md:px-4 flex flex-col gap-2  md:gap-8 overflow-y-auto md:rounded-lg'>
 
-            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-4 rounded-lg border text-ascent-2 bg-bg2'>
+            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg border text-ascent-2 bg-bg2'>
 
-              <div className='w-full flex items-end pt-3 pb-4 border-b justify-between'>
+              <div className='w-full flex items-end pt-1 md:pt-3 pb-4 border-b justify-between'>
 
-                <div className='w-14 h-14'>
+                <div>
                   <img src={user?.profileUrl}
                     alt='User Image'
-                    className='w-14 h-14 rounded-full object-cover'
+                    className='w-11 h-11 md:w-14 md:h-14 rounded-full object-cover'
                   />
                 </div>
 
                 <div className='w-[85%]'>
                   <TextInput
-                    styles="w-full rounded-full py-[13px] flex"
+                    styles="w-full rounded-full py-[10px] md:py-[13px] flex"
                     placeholder="what's on your mind..."
                     name="description"
                     register={register('description', { required: "Write something about post" })}
@@ -228,7 +228,7 @@ export const Home = () => {
 
 
               {/* file upload  */}
-              <div className='flex items-center justify-between py-4'>
+              <div className='flex items-center justify-between py-1 md:py-4'>
 
                 {/* image upload */}
                 <label htmlFor='imgUpload' className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer'>
@@ -279,7 +279,7 @@ export const Home = () => {
                       (<CustomBtn
                         type="submit"
                         title='Post'
-                        containerStyles='bg-[#0444a4] text-white py-1 px-6 rounded-full font-semibold text-sm' />
+                        containerStyles='bg-[#0444a4] text-white py-1 px-4 md:px-6 rounded-full font-semibold text-sm' />
                       )
                   }
                 </div>

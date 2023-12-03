@@ -10,14 +10,6 @@
   scrollbar-width: none;
 }
 
-
-.topbar {
-  position: sticky;
-  top: 0px;
-  z-index: 49;
-}
-
-
 @layer base {
   :root {
     --color-bg: 227 227 227;

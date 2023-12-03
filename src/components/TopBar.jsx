@@ -47,9 +47,9 @@ export const TopBar = () => {
 
     return (
 
-        <div className='topbar w-full h-16 md:h-24 flex items-center justify-between py-3 md:py-5 px-4 rounded-lg bg-primary'>
+        <div className='md:sticky md:top-0 z-50 w-full h-12 md:h-24 flex items-center justify-between py-3 md:py-5 px-4 md:rounded-lg bg-primary border-b text-ascent-2'>
 
-            <Link to='/' className='flex gap-2 items-center justify-center relative '>
+            <Link to='/' className='flex gap-2 items-center justify-center relative  '>
                 <div>
                     <img src={logo} className='w-12 h-12' />
                 </div>
