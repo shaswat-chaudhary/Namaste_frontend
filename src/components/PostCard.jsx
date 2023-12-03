@@ -123,7 +123,7 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
     return <form onSubmit={handleSubmit(onSubmit)}
         className='w-full border-b border-[#66666645]'>
 
-        <div className='w-full flex items-center gap-3 py-4 justify-between'>
+        <div className='w-full flex items-center md:gap-3 md:py-4 justify-between'>
 
             <div className='flex w-full items-center justify-between'>
 
@@ -131,14 +131,14 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
                     <img
                         src={user?.profileUrl}
                         alt='user image'
-                        className='w-14 h-14 rounded-full bg-blue object-cover'
+                        className='w-10 h-10 md:w-14 md:h-14 rounded-full bg-blue object-cover'
                     />
                 </div>
 
-                <div className='mr-3 w-[80%]'>
+                <div className='mr-3 w-[80%] my-3'>
                     <TextInput
                         name='comment'
-                        styles='w-full rounded-full py-3'
+                        styles='w-full rounded-full md:py-3 py-[10px]'
                         placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
                         register={register("comment", { required: "Comment is required" })}
                         error={errors?.comment ? errors.comment.message : ""}
@@ -151,7 +151,7 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
 
             <div className='pt-3'>
                 {loading ? (<Loading />) : (
-                    <CustomBtn title="Submit" type="submit" containerStyles='bg-[#0444a4] text-white py-2 px-4 rounded-full font-semibold text-sm' />)}
+                    <CustomBtn title="Submit" type="submit" containerStyles='bg-[#0444a4] text-white md:py-2 py-1 px-2 md:px-4 rounded-full font-semibold text-sm' />)}
             </div>
         </div>
     </form>
@@ -187,10 +187,10 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
     };
 
     return (
-        <div className='md:mb-2 p-1 md:p-2 rounded-lg border text-ascent-2 bg-bg2'>
+        <div className='md:mb-2 mb-1 md:p-2 rounded-lg md:border text-ascent-2 bg-bg2'>
             
 
-            <div className='flex gap-3 items-center mb-2 md:p-1 md:pl-2 '>
+            <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
                 <Link to={'/profile/' + post?.userId?._id}>
                     <img src={post?.userId?.profileUrl} alt={post?.userId?.firstName} className='w-12 h-10 md:w-16 md:h-14 rounded-full object-cover' />
 
@@ -209,14 +209,14 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     </div>
 
                     <div className='flex justify-between items-center'>
-                        <span className='text-ascent-2 text-[8px] md:text-base'>{moment(post?.createdAt).fromNow()}</span>
+                        <span className='text-ascent-2 text-xs md:text-base'>{moment(post?.createdAt).fromNow()}</span>
                     </div>
                 </div>
 
             </div>
 
             <div>
-                <p className='text-ascent-1 font-normal '>
+                <p className='text-ascent-1 font-normal pl-2 mb-1'>
                     {
                         showAll === post?._id ? post?.description : post?.description?.slice(0, 200)
                     }
@@ -240,16 +240,19 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     }
                 </p>
 
+               
                 {
                     post?.image && (
                         <img src={post?.image}
                             alt="post image"
-                            className='w-full mt-2' />
+                            className='w-full h-72 md:h-full mt-2 object-contain bg-[#000]' />
                     )
                 }
+              
+
             </div>
 
-            <div className='mt-4 flex justify-between items-center px-3 py-2 text-ascent-2 text-base border-t '>
+            <div className='md:mt-4 flex justify-between items-center px-3 py-2 text-ascent-2 text-base border-t '>
 
                 <p className='flex gap-2 items-center text-sm md:text-base cursor-pointer text-ascent-1'
                     onClick={() => handleLike('/posts/like/' + post?._id)}>

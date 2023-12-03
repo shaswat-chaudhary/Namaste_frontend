@@ -23,6 +23,7 @@
     --color-hovercolor: 0 248 255;
     --color-shadowcolor: 77 208 255;
     --color-bg2: 255 255 255;
+    --color-bg3: 255 255 255;
     
 
   }
@@ -39,7 +40,7 @@
     --color-hovercolor: 31 31 31;
     --color-shadowcolor: 39 47 126;
     --color-bg2: 10 20 30;
-
+--color-bg3: 21 30 49;
 
 
   }

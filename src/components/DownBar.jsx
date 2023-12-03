@@ -14,29 +14,29 @@ export const DownBar = () => {
 
 
     return (
-        <div className='flex w-full h-10 bg-bgColor justify-between items-center sticky bottom-0 z-50 px-5 md:px-10 md:hidden text-ascent-1'>
+        <div className='flex w-full h-12 bg-bg3 justify-between items-center sticky bottom-0 px-5 md:hidden text-ascent-1 rounded-t-lg'>
 
-            <Link to='/'>
-                <TiHome size={24} />
-           </Link>
+            <Link to='/' className='w-10 h-10 p-2' >
+                <TiHome className='w-6 h-6' />
+            </Link>
 
-           <div>
-                <FaUserFriends size={23}/>
+            <div className='w-10 h-10 p-2'>
+                <FaUserFriends className='w-6 h-6' />
             </div>
 
 
-            <div>
-                <BiSearch size={24}/>
+            <div className='w-10 h-10 p-2'>
+                <BiSearch className='w-6 h-6' />
             </div>
 
-            
-            <div>
-                <BiLogoMessenger size={28}/>
+
+            <div className='w-10 h-10 p-2'>
+                <BiLogoMessenger className='w-7 h-7' />
 
             </div>
 
             <Link to="/profile/:id">
-                <div className='w-6 h-6'>
+                <div className='w-10 h-10 p-2'>
                     <img src={user?.profileUrl} className='w-6 h-6 object-cover rounded-full' />
                 </div>
             </Link>

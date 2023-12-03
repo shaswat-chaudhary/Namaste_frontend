@@ -22,7 +22,7 @@ export const Profile = ({ friends }) => {
 
   return (
     <>
-      <div className='home w-full lg:px-10 md:pb-20 2xl:px-20 h-screen overflow-auto'>
+      <div className='w-full lg:px-10 md:pb-20 2xl:px-20 h-screen overflow-auto bg-bgColor'>
 
         <TopBar />
 
