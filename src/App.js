@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux';
 import './App.css';
-import { Home } from './pages';
+import { Chat, FriendList, Home } from './pages';
 import { Register } from './pages';
 import { Profile } from './pages';
 import { Login } from './pages';
 import { ResetPassword } from './pages';
 import { Outlet, Route, Routes, Navigate, useLocation} from 'react-router-dom';
+
 
 function Layout() {
   const {user} = useSelector(state => state.user);
@@ -27,6 +28,8 @@ function App() {
         <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/friends" element={<FriendList/>} />
+          <Route path='/chat' element={<Chat/>} />
         </Route>
 
         <Route path="/register" element={<Register />} />

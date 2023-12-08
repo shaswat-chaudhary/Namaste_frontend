@@ -183,9 +183,11 @@ export const Home = () => {
   return (
     <>
 
-      <div className='w-full lg:px-10 md:pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor'>
+      <div className='w-full lg:px-10 md:pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor scroll-smooth'>
 
         <TopBar />
+        <DownBar />
+
 
         <div className="w-full flex gap-2 lg:gap-4 pt-2 md:pt-5 h-full">
 
@@ -399,7 +401,6 @@ export const Home = () => {
 
         </div>
 
-        <DownBar />
 
       </div>
 

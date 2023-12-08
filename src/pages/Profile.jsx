@@ -25,17 +25,14 @@ export const Profile = ({ friends }) => {
       <div className='w-full lg:px-10 md:pb-20 2xl:px-20 h-screen overflow-auto bg-bgColor'>
 
         <TopBar />
+        <DownBar />
 
-        <div className='w-full flex gap-2 lg:gap-4 md:pl-4 pt-4 pb-10 h-full'>
+        <div className='w-full md:flex gap-2 lg:gap-4 md:pl-4 pt-4 pb-10 h-full'>
 
           {/* Left */}
 
           <div className='md:w-1/3 lg:w-1/4 w-full flex flex-col gap-6 overflow-hidden'>
             <ProfileCard user={userInfo} />
-
-            <div className='block lg:hidden'>
-              <FriendsCard friends={userInfo?.friends} />
-            </div>
 
           </div>
 
@@ -62,13 +59,11 @@ export const Profile = ({ friends }) => {
 
           {/* Right */}
 
-          <div className='hidden w-1/4 h-full lg:flex flex-col gap-8 overflow-y-auto'>
+          <div className='md:w-1/4 lg:flex flex-col gap-8 pt-3 md:pt-0 overflow-y-auto'>
             <FriendsCard friends={userInfo?.friends} />
           </div>
         </div>
-
-        <DownBar />
-        
+  
       </div>
 
       {edit && <EditProfile />}
