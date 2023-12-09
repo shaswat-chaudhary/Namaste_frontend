@@ -187,7 +187,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
     };
 
     return (
-        <div className='md:mb-2 mb-1 md:p-2 rounded-lg md:border text-ascent-2 bg-bg2'>
+        <div className=' md:mb-2 mb-1 md:p-2 rounded-md md:border text-ascent-2 bg-bg2'>
             
 
             <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
@@ -306,7 +306,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
             {
                 showComments === post?._id && (
-                    <div className='w-full mt-4 border-t border-[#66666645] pt-4 '>
+                    <div className='w-full mt-4 border-t border-[#66666645] pt-1 px-2 '>
                         <CommentForm
                             user={user}
                             id={post?._id}

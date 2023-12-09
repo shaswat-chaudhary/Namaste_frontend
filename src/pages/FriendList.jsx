@@ -4,11 +4,17 @@ import { Home } from './Home'
 
 
 export const FriendList = () => {
+
+ 
   return (
     <div>
         <TopBar/>
       
         <DownBar/>
+
     </div>
   )
 }
+
+
+

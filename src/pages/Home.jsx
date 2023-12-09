@@ -189,7 +189,7 @@ export const Home = () => {
         <DownBar />
 
 
-        <div className="w-full flex gap-2 lg:gap-4 pt-2 md:pt-5 h-full">
+        <div className="w-full flex gap-2 lg:gap-4 pt-1 md:pt-5 h-full">
 
           {/* Left */}
 
@@ -202,9 +202,9 @@ export const Home = () => {
 
           {/* Center */}
 
-          <div className='flex-1 h-full px-[2px] md:px-4 flex flex-col md:gap-8 overflow-y-auto md:rounded-lg'>
+          <div className='flex-1 h-full  md:px-4 flex flex-col md:gap-8 overflow-y-auto md:rounded-lg'>
 
-            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg border text-ascent-2 bg-bg2 mb-2 md:mb-0'>
+            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg border text-ascent-2 bg-bg2 mb-1'>
 
               <div className='w-full flex items-end pt-1 md:pt-3 pb-4 border-b justify-between'>
 

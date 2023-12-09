@@ -24,7 +24,7 @@ export const DownBar = () => {
 
 
     return (
-        <div className='flex w-full h-12 bg-bg3 justify-between items-center sticky top-0 z-50 px-5 md:hidden text-ascent-1 rounded-t-lg'>
+        <div className='flex w-full h-12 bg-bg3 justify-between items-center sticky top-0 z-50 px-5 md:hidden text-ascent-1 '>
 
             <Link to='/' onClick={() => handleCurrentPage('/')} className='w-10 h-10 p-2'>
                 {currentPage === '/' ? <GoHomeFill size={25} /> : <GoHome size={25} />}

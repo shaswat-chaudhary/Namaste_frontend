@@ -52,17 +52,17 @@ export const Register = () => {
   return (
     <div className='bg-slate-800 w-full h-[100vh] flex items-center justify-center p-6'>
 
-      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex flex-row-reverse bg-  overflow-hidden shadow-xl border rounded-xl'>
+      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 lg:py-0 flex flex-row-reverse overflow-hidden shadow-xl border rounded-xl'>
 
         {/* Right SIDE  */}
 
-        <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center'>
+        <div className='w-full lg:w-1/2 h-full px-3 pb-2 md:p-10 2xl:px-20 flex flex-col justify-center'>
 
-          <div className='w-full flex gap-2 items-center mb-4'>
+          <div className='w-full flex gap-2 items-center md:mb-4'>
             <img src={logo}
               className='w-14 h-14' />
 
-            <span className='text-2xl text-[#3d85a8] font-semibold'>Namaste India</span>
+            <span className='text-xl md:text-2xl text-[#3d85a8] font-semibold'>Namaste India</span>
 
           </div>
           <p className='text-lg font-semibold'>
@@ -71,7 +71,7 @@ export const Register = () => {
 
 
           <form onSubmit={handleSubmit(onSubmit)}
-            className='py-8 flex flex-col gap-5 '>
+            className=' py-2 md:py-8 flex flex-col gap-3 md:gap-5 '>
 
             <div className='w-full flex flex-col lg:flex-row gap-1 md:gap-2'>
 

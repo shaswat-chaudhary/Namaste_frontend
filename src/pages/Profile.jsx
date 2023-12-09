@@ -27,7 +27,7 @@ export const Profile = ({ friends }) => {
         <TopBar />
         <DownBar />
 
-        <div className='w-full md:flex gap-2 lg:gap-4 md:pl-4 pt-4 pb-10 h-full'>
+        <div className='w-full md:flex gap-2 lg:gap-4 md:pl-4 pt-1 md:pt-4 pb-10 h-full'>
 
           {/* Left */}
 

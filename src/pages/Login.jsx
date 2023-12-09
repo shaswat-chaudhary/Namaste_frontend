@@ -53,11 +53,11 @@ export const Login = () => {
   return (
     <div className='w-full h-[100vh] flex items-center justify-center p-6'>
 
-      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex border rounded-xl overflow-hidden shadow-xl '>
+      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 md:py-8 lg:py-0 flex border rounded-xl overflow-hidden shadow-xl '>
 
         {/* LEFT SIDE  */}
 
-        <div className='w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center'>
+        <div className='w-full lg:w-1/2 h-full p-4 md:p-10 2xl:px-20 flex flex-col justify-center'>
 
           <div className='w-full flex gap-2 items-center mb-4'>
             <img
@@ -76,7 +76,7 @@ export const Login = () => {
 
 
           <form onSubmit={handleSubmit(onSubmit)}
-            className='py-8 flex flex-col gap-5'>
+            className='py-4 md:py-8 flex flex-col gap-5'>
 
             <TextInput
               name='email'
@@ -84,7 +84,7 @@ export const Login = () => {
               label="Email Address"
               type='email'
               register={register('email', { require: "Email is required" })}
-              styles='w-full rounded-full'
+              styles='w-full md:rounded-full'
               labelStyles='ml-2'
               error={errors.email ? errors.email.message : ""}
             />
@@ -95,7 +95,7 @@ export const Login = () => {
               label="Password"
               type='password'
               register={register('password', { require: "password is required" })}
-              styles='w-full rounded-full'
+              styles='w-full md:rounded-full'
               labelStyles='ml-2 text-[#000]'
               error={errors?.password ? errors.password.message : ""}
             />
