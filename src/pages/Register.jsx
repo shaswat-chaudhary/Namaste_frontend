@@ -62,7 +62,7 @@ export const Register = () => {
             <img src={logo}
               className='w-14 h-14' />
 
-            <span className='text-xl md:text-2xl text-[#3d85a8] font-semibold'>Namaste India</span>
+            <span className='text-xl md:text-2xl text-[#3d85a8] font-semibold'>Namaste</span>
 
           </div>
           <p className='text-lg font-semibold'>
@@ -81,7 +81,7 @@ export const Register = () => {
                 label="First Name"
                 type='text'
                 register={register('firstName', { require: "First Name is required" })}
-                styles='w-full '
+                styles='w-full px-4'
                 labelStyles='ml-2'
                 error={errors?.email ? errors.email.message : ""}
               />
@@ -92,7 +92,7 @@ export const Register = () => {
                 label="Last Name"
                 type='text'
                 register={register('lastName', { require: "Last Name is required" })}
-                styles='w-full '
+                styles='w-full px-4'
                 labelStyles='ml-2'
                 error={errors?.email ? errors.email.message : ""}
               />
@@ -105,7 +105,7 @@ export const Register = () => {
               label="Email Address"
               type='email'
               register={register('email', { require: "Email is required" })}
-              styles='w-full '
+              styles='w-full px-4'
               labelStyles='ml-2'
               error={errors?.email ? errors.email.message : ""}
             />
@@ -118,7 +118,7 @@ export const Register = () => {
                 label="Password"
                 type='password'
                 register={register('password', { require: "password is required" })}
-                styles='w-full '
+                styles='w-full px-4'
                 labelStyles='ml-2'
                 error={errors?.password ? errors.password.message : ""}
               />
@@ -134,7 +134,7 @@ export const Register = () => {
                     else return "Password does not match"
                   }
                 })}
-                styles='w-full '
+                styles='w-full px-4'
                 labelStyles='ml-2'
                 error={errors?.cpassword ? errors.password.message : ""}
               />

@@ -10,6 +10,9 @@ import { MdDelete } from 'react-icons/md';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { BsChat } from "react-icons/bs";
+import { motion } from 'framer-motion';
+import { variant1 } from '../utils/motion';
+import Avatar from '@mui/material/Avatar';
 
 
 const getPostComments = async (id) => {
@@ -123,36 +126,29 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
     return <form onSubmit={handleSubmit(onSubmit)}
         className='w-full border-b border-[#66666645]'>
 
-        <div className='w-full flex items-center md:gap-3 md:py-4 justify-between'>
+        <div className='w-full flex flex-1 items-center gap-3 md:py-4 justify-between mb-2'>
 
-            <div className='flex w-full items-center justify-between'>
+            <div className='w-full flex justify-between gap-2 items-center'>
+                <img
+                    src={user?.profileUrl}
+                    alt='user image'
+                    className='w-10 h-10 md:w-14 md:h-14 rounded-full bg-blue object-cover'
+                />
 
-                <div>
-                    <img
-                        src={user?.profileUrl}
-                        alt='user image'
-                        className='w-10 h-10 md:w-14 md:h-14 rounded-full bg-blue object-cover'
-                    />
-                </div>
-
-                <div className='mr-3 w-[80%] my-3'>
-                    <TextInput
-                        name='comment'
-                        styles='w-full rounded-full md:py-3 py-[10px]'
-                        placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
-                        register={register("comment", { required: "Comment is required" })}
-                        error={errors?.comment ? errors.comment.message : ""}
-                    />
-                </div>
-
-
+                <TextInput
+                    name='comment'
+                    styles='w-full rounded-full md:py-3 py-[10px] mb-2 '
+                    placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
+                    register={register("comment", { required: "Comment is required" })}
+                    error={errors?.comment ? errors.comment.message : ""}
+                />
             </div>
 
-
-            <div className='pt-3'>
+            <div className='flex items-center text-center p-1'>
                 {loading ? (<Loading />) : (
-                    <CustomBtn title="Submit" type="submit" containerStyles='bg-[#0444a4] text-white md:py-2 py-1 px-2 md:px-4 rounded-full font-semibold text-sm' />)}
+                    <CustomBtn title="Submit" type="submit" containerStyles='bg-[#0444a4] text-white md:py-2 py-1 px-3 md:px-4 rounded-full text-center font-semibold text-md' />)}
             </div>
+
         </div>
     </form>
 
@@ -186,9 +182,11 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
     };
 
+
     return (
-        <div className=' md:mb-2 mb-1 md:p-2 rounded-md md:border text-ascent-2 bg-bg2'>
-            
+        <motion.div
+            variants={variant1(0.4)} initial='hidden' whileInView={'show'}
+            className='mb-1 md:p-2 rounded-md md:border text-ascent-2 bg-bg2 scroll-smooth'>
 
             <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
                 <Link to={'/profile/' + post?.userId?._id}>
@@ -216,7 +214,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
             </div>
 
             <div>
-                <p className='text-ascent-1 font-normal pl-2 mb-1'>
+                <p className='text-ascent-1 font-normal pl-2 mb-1 break-words px-1'>
                     {
                         showAll === post?._id ? post?.description : post?.description?.slice(0, 200)
                     }
@@ -240,7 +238,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     }
                 </p>
 
-               
+
                 {
                     post?.image && (
                         <img src={post?.image}
@@ -248,7 +246,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                             className='w-full h-72 md:h-full mt-2 object-contain bg-[#000]' />
                     )
                 }
-              
+
 
             </div>
 
@@ -266,8 +264,6 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     {post?.likes?.length} Likes
                 </p>
 
-
-
                 <p className='flex gap-2 items-center text-ascent-1 text-base cursor-pointer'
                     onClick={() => {
                         setShowComments(showComments === post?._id ? null : post?._id);
@@ -280,7 +276,6 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
                 </p>
 
-
                 {user?._id === post?.userId?._id && (
                     <div className='flex gap-2 items-center text-base cursor-pointer text-ascent-1'
                         onClick={() => deletePost(post?._id)}
@@ -292,17 +287,9 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     </div>
                 )}
 
-
-
-
-
             </div>
 
-
-
             {/* Comments  */}
-
-
 
             {
                 showComments === post?._id && (
@@ -318,32 +305,38 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
                                 comments.map((comment) => (
 
-                                    <div className='w-full py-2' key={comments?._id}>
+                                    <div className='w-full py-2 border-b border-[#66666645]' key={comments?._id}>
 
-                                        <div className='flex  gap-3 items-center mb-1'>
-                                            <Link to={'/profile/' + comments?.userId?._id}>
-                                                <img
-                                                    src={comment?.userId?.profileUrl}
-                                                    alt={comment?.userId?.firstName}
-                                                    className='w-11 h-10 rounded-full object-cover'
-                                                />
-                                            </Link>
+                                        <div className='w-full flex justify-between gap-2 items-center mb-1 overflow-hidden'>
 
-                                            <div className='flex justify-between w-full items-center'>
+                                            <div className='p-1 w-full gap-2 flex justify-between items-center'>
 
-                                                <div>
+                                                <Link to={'/profile/' + comments?.userId?._id}>
+                                                    <Avatar
+                                                        src={comment?.userId?.profileUrl}
+                                                        alt={comment?.userId?.firstName}
+                                                    // className='w-10 h-10 rounded-full object-cover'
+                                                    />
+                                                </Link>
+
+                                                <div className='flex flex-col justify-between w-full'>
+
                                                     <Link to={'/profile' + comment?.userId?._id}>
                                                         <p className='font-medium text-base text-ascent-1'>
                                                             {comment?.userId?.firstName} {comment?.userId?.lastName}
                                                         </p>
                                                     </Link>
 
-                                                    <p className='text-ascent-1'>
+                                                    <p className='text-ascent-1 break-all'>
                                                         {comment?.comment}
                                                     </p>
-
                                                 </div>
-                                                <p className='flex gap-2 items-center text-base text-ascent-2 cursor-pointer'>
+
+                                            </div>
+
+
+                                            <div className='p-1'>
+                                                <p className='flex gap-2 text-center items-center text-base text-ascent-2 cursor-pointer'>
                                                     {comment?.likes?.includes(user?._id) ? (
                                                         <FaHeart size={20} className=' text-red-500' />
                                                     ) : (
@@ -352,11 +345,9 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
                                                     <span>{comment?.likes?.length}</span>
                                                 </p>
-
                                             </div>
-
-
                                         </div>
+
 
                                         <div className='ml-12'>
 
@@ -377,9 +368,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
                                             </div>
 
-
-                                            <div className='mt-2 flex gap-6'>
-
+                                            <div className='flex gap-6'>
                                             </div>
 
                                             {
@@ -396,11 +385,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                                         </div>
 
 
-
-
                                         {/*  Replies */}
-
-
 
 
                                         <div className='py-2 px-8 mt-1 '>
@@ -437,6 +422,6 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     </div>
                 )
             }
-        </div>
+        </motion.div>
     )
 }

@@ -4,7 +4,6 @@ import { DownBar, TopBar } from '../components'
 export const Chat = () => {
   return (
     <div>
-      <TopBar /> 
       <DownBar />
     </div>
   )

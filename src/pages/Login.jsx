@@ -64,7 +64,7 @@ export const Login = () => {
               src={logo}
               className='w-14 h-14'
             />
-            <span className='text-2xl font-semibold text-[#3d85a8]'>Namaste India</span>
+            <span className='text-2xl font-semibold text-[#3d85a8]'>Namaste</span>
 
           </div>
           <p className='text-base font-semibold'>
@@ -84,7 +84,7 @@ export const Login = () => {
               label="Email Address"
               type='email'
               register={register('email', { require: "Email is required" })}
-              styles='w-full md:rounded-full'
+              styles='w-full md:rounded-full px-4'
               labelStyles='ml-2'
               error={errors.email ? errors.email.message : ""}
             />
@@ -95,7 +95,7 @@ export const Login = () => {
               label="Password"
               type='password'
               register={register('password', { require: "password is required" })}
-              styles='w-full md:rounded-full'
+              styles='w-full md:rounded-full px-4'
               labelStyles='ml-2 text-[#000]'
               error={errors?.password ? errors.password.message : ""}
             />

@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { CgMenu } from "react-icons/cg";
-import { FaUserFriends } from "react-icons/fa";
-import { TiHome } from "react-icons/ti";
-import { SiMessenger } from "react-icons/si";
-import { BiSearch } from "react-icons/bi";
-import { BiLogoMessenger } from "react-icons/bi";
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { GoHome, GoSearch, GoHomeFill } from 'react-icons/go'
-import { FaFacebookMessenger } from 'react-icons/fa6';
 import { RiMessengerFill, RiMessengerLine } from "react-icons/ri";
+import { Avatar } from '@mui/material';
+import { HiMiniUsers } from "react-icons/hi2";
+import { HiOutlineUsers } from "react-icons/hi2";
+
 
 export const DownBar = () => {
 
@@ -26,12 +23,13 @@ export const DownBar = () => {
     return (
         <div className='flex w-full h-12 bg-bg3 justify-between items-center sticky top-0 z-50 px-5 md:hidden text-ascent-1 '>
 
-            <Link to='/' onClick={() => handleCurrentPage('/')} className='w-10 h-10 p-2'>
-                {currentPage === '/' ? <GoHomeFill size={25} /> : <GoHome size={25} />}
+            <Link to='/' onClick={() => handleCurrentPage('/')} className='w-10 h-10 p-1.5'>
+                {currentPage === '/' ? <GoHomeFill size={27} /> : <GoHome size={27} />}
             </Link>
 
-            <Link to='/friends' className='w-10 h-10 p-2'>
-                <FaUserFriends size={25} />
+            <Link to='/friends' className='w-10 h-10 p-1 flex items-center'>
+                {currentPage === '/friends' ? <HiMiniUsers size={27} /> : <HiOutlineUsers size={27} />}
+
             </Link>
 
 
@@ -39,19 +37,22 @@ export const DownBar = () => {
                 <GoSearch size={25} />
             </div>
 
-            <Link to='/chat' onClick={() => handleCurrentPage('/chat')} className='w-10 h-10 p-2' >
-                {currentPage === '/chat' ? <RiMessengerFill size={25} /> : <RiMessengerLine size={25} />}
+            <Link to='/chat' onClick={() => handleCurrentPage('/chat')} className=' p-1'>
+                {currentPage === '/chat' ? <RiMessengerFill size={28} /> : <RiMessengerLine size={28} />}
             </Link>
 
 
-            <Link to="/profile/:id" onClick={() => handleCurrentPage('/profile/:id')}>
-                {currentPage === '/profile/:id' ? <div 
-                className='w-10 h-10 p-2'>
-                    <img src={user?.profileUrl} className='w-7 h-6 ring-1 ring-[#D332FC] object-cover rounded-full' />
-                </div> : <div
-                    className='w-10 h-10 p-2'>
-                    <img src={user?.profileUrl} className='w-7 h-6 object-cover rounded-full' />
-                </div>
+            <Link to="/profile/:id" onClick={() => handleCurrentPage('/profile/:id')} >
+                {currentPage === '/profile/:id' ?
+                    <Avatar
+                        src={user?.profileUrl}
+                        className='ring-1 ring-[#D332FC]'
+                        sx={{ width: 28, height: 28 }}
+                    /> : <Avatar
+                        src={user?.profileUrl}
+                        sx={{ width: 28, height: 28 }}
+                    />
+
                 }
 
             </Link>

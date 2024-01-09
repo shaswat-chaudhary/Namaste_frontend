@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CustomBtn, EditProfile, Loading, ProfileCard, TextInput, TopBar } from '../components';
 import { FriendsCard } from '../components/FriendsCard';
 import { Link } from 'react-router-dom';
-import { BsFiletypeGif, BsPersonFillAdd } from 'react-icons/bs';
+import { BsFiletypeGif } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import { BiImages, BiSolidVideo } from 'react-icons/bi'
 import { PostCard } from '../components/PostCard';
@@ -16,6 +16,9 @@ import { FaCheck, FaTimes } from 'react-icons/fa';
 import { IoPersonAdd } from "react-icons/io5";
 import toast from 'react-hot-toast';
 import { DownBar } from '../components/DownBar';
+import { FriendReq } from '../components/FriendReq';
+import { SuggestFriend } from '../components/SuggestFriend';
+import { FriendList } from './FriendList';
 
 
 export const Home = () => {
@@ -23,10 +26,6 @@ export const Home = () => {
   const { user, edit } = useSelector((state) => state.user);
 
   const { posts } = useSelector((state) => state.posts)
-
-  const [friendRequest, setFriendRequest] = useState([]);
-
-  const [suggestFriends, setSuggestFriends] = useState([]);
 
   const [errMsg, setErrMsg] = useState("");
   const [file, setFile] = useState('');
@@ -94,72 +93,6 @@ export const Home = () => {
     await fetchPost();
   };
 
-  const fetchFriendReq = async () => {
-
-    try {
-
-      const res = await apiRequest({
-
-        url: 'users/get-friend-request',
-        token: user?.token,
-        method: 'POST'
-
-      });
-
-      setFriendRequest(res?.data);
-    } catch (error) {
-      console.log(error);
-
-    }
-  };
-
-  const fetchSuggestFriend = async () => {
-
-    try {
-      const res = await apiRequest({
-        url: "users/suggest-friend",
-        token: user?.token,
-        method: "POST",
-      });
-
-      setSuggestFriends(res?.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handlefriendReq = async (id) => {
-
-    try {
-
-      const res = await sendFriendReq(user.token, id);
-      toast.success('Friend Request Sent')
-      await fetchSuggestFriend();
-
-    }
-    catch (error) {
-      console.log(error);
-    }
-  };
-
-  const acceptFriendReq = async (id, status) => {
-
-    try {
-
-      const res = await apiRequest({
-        url: "/users/accept-request",
-        token: user?.token,
-        method: "POST",
-        data: { rid: id, status }
-      });
-
-      setFriendRequest(res?.data)
-      toast.success('Friend Request Accepted')
-    }
-    catch (error) {
-      console.log(error);
-    }
-  };
 
   const getUser = async () => {
 
@@ -175,9 +108,7 @@ export const Home = () => {
     setLoading(true);
     getUser();
     fetchPost();
-    fetchSuggestFriend();
-    fetchFriendReq();
-
+   
   }, [])
 
   return (
@@ -202,9 +133,9 @@ export const Home = () => {
 
           {/* Center */}
 
-          <div className='flex-1 h-full  md:px-4 flex flex-col md:gap-8 overflow-y-auto md:rounded-lg'>
+          <div className='flex-1 h-full  md:px-4 flex flex-col md:gap-4 overflow-y-auto md:rounded-lg'>
 
-            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg border text-ascent-2 bg-bg2 mb-1'>
+            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg md:border text-ascent-2 bg-bg2 mb-1'>
 
               <div className='w-full flex items-end pt-1 md:pt-3 pb-4 border-b justify-between'>
 
@@ -217,7 +148,7 @@ export const Home = () => {
 
                 <div className='w-[85%]'>
                   <TextInput
-                    styles="w-full rounded-full py-[10px] md:py-[13px] flex"
+                    styles="w-full rounded-full py- md:py-[13px] flex px-4"
                     placeholder="what's on your mind..."
                     name="description"
                     register={register('description', { required: "Write something about post" })}
@@ -307,7 +238,7 @@ export const Home = () => {
               ) :
                 (
                   <div className='flex w-full h-full items-center justify-center'>
-                    <p className='text-lg text-ascent-2'>No Post Available</p>
+                    <p className='text-lg text-ascent-2' >No Post Available</p>
                   </div>
                 )
             }
@@ -317,86 +248,8 @@ export const Home = () => {
 
           {/* Right */}
 
-          <div className='hidden w-1/4 full lg:flex flex-col  gap-8 overflow-y-auto rounded-lg '>
-
-            <div className='w-full border shadow-sm rounded-lg px-4 py-3 bg-bg2 text-ascent-2'>
-              <div className='flex items-center justify-between text-xl pb-2 border-b'>
-                <span className='text-ascent-1'>Friend Request</span>
-                <span className='text-ascent-1'>{friendRequest?.length}</span>
-              </div>
-
-              <div className='w-full flex flex-col gap-4 pt-4'>
-                {
-                  friendRequest?.map(({ _id, requestFrom: from }) => (
-                    <div key={_id} className='flex items-center justify-between'>
-
-                      <Link to={'/profile' + from._id} className='w-full flex gap-4 items-center cursor-pointer'>
-
-                        <img src={from?.profileUrl} className='w-11 h-11 object-cover rounded-full' />
-                        <div className='flex-1'>
-                          <p className='text-ascent-1 font-medium'>{from?.firstName} {from?.lastName}</p>
-                          <span className='text-sm text-ascent-1'>{from?.profession ?? "No Profession"}</span>
-                        </div>
-
-                      </Link>
-
-                      <div className='flex gap-1'>
-                        <FaCheck
-                          onClick={() => acceptFriendReq(_id, 'accepted')}
-                          className='text-red border rounded-full w-8 h-8 p-[2px] cursor-pointer' />
-
-                        <FaTimes
-                          onClick={() => acceptFriendReq(_id, "cancel")}
-                          className='text-ascent-1 text-red-500  border rounded-full w-8 h-8 p-[2px] cursor-pointer' />
-
-                      </div>
-
-
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-
-            <div className='w-full border shadow-sm rounded-lg px-4 py-3 bg-bg2 text-ascent-2 '>
-              <div className='flex items-center justify-between text-xl border-b pb-2'>
-                <span className='text-ascent-1'>Friend Suggestion</span>
-              </div>
-              <div className='w-full flex flex-col gap-4 pt-4 '>
-                {
-                  suggestFriends?.map((friend) => (
-                    <div key={friend?._id} className='flex justify-between items-center'>
-
-                      <Link to={'/profile' + friend?._id} className='w-full flex gap-4 items-center cursor-pointer'>
-                        <img src={friend?.profileUrl} className='w-10 h-10 object-cover rounded-full' />
-
-                        <div className='flex-1'>
-                          <p className='text-ascent-1 font-medium'>{friend?.firstName} {friend?.lastName}</p>
-                          <span className='text-sm text-ascent-1'>{friend?.profession ?? "No Profession"}</span>
-                        </div>
-
-                      </Link>
-
-
-                      <div className='flex gap-1'>
-                        <button onClick={() => handlefriendReq(friend?._id)} className='text-blue p-1 rounded' >
-
-                          {friendRequest?.find((item) => item.requestFrom._id === friend?._id) ? (
-                            <MdDownloadDone size={25} />
-                          ) : (
-                            <IoPersonAdd size={25} />
-                          )}
-
-                        </button>
-
-
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-
-            </div>
+          <div className='hidden w-1/4 full lg:flex overflow-y-auto rounded-lg '>
+            <FriendList />
           </div>
 
         </div>

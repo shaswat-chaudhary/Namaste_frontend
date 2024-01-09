@@ -7,4 +7,4 @@ import { FriendList } from "./FriendList";
 import { Chat } from "./Chat";
 
 
-export { Login, Home, Register, Profile, ResetPassword,FriendList,Chat  };
+export { Login, Home, Register, Profile, ResetPassword, FriendList, Chat };

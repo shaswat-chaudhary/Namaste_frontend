@@ -20,12 +20,12 @@ export const TextInput = React.forwardRef((
 
         <div className='w-full flex flex-col mt-2 '>
             {
-                label && (<p className={`text-sm mb-2 ${labelStyles}`}>{label}</p>)
+                label && (<p className={`text-sm mb-1 ${labelStyles}`}>{label}</p>)
             }
 
             <div>
                 <input
-                    className={`rounded border border-[#66666690] outline-none text-sm px-4 py-3 placeholder:text-[#66666690] ${styles}`}
+                    className={`rounded border border-[#66666690] outline-none px- py-2 placeholder:text-[#66666690] ${styles}`}
                     type={type}
                     name={name}
                     placeholder={placeholder}

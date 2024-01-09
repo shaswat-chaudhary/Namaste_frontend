@@ -8,10 +8,11 @@ import { PostCard } from "./PostCard";
 import { EditProfile } from "./EditProfile";
 import { ThemeMode } from "./ThemeMode";
 import { DownBar } from "./DownBar";
+import { FriendReq } from "./FriendReq";
+import { SuggestFriend } from "./SuggestFriend";
 
 
 
 
 
-
-export { Loading, TextInput, CustomBtn, TopBar, ProfileCard, FriendsCard, PostCard, EditProfile, ThemeMode, DownBar };
+export { Loading, TextInput, CustomBtn, TopBar, ProfileCard, FriendsCard, PostCard, EditProfile, ThemeMode, DownBar,SuggestFriend, FriendReq };
