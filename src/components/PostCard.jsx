@@ -15,6 +15,8 @@ import { variant1 } from '../utils/motion';
 import Avatar from '@mui/material/Avatar';
 
 
+
+
 const getPostComments = async (id) => {
 
     try {
@@ -126,18 +128,17 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
     return <form onSubmit={handleSubmit(onSubmit)}
         className='w-full border-b border-[#66666645]'>
 
-        <div className='w-full flex flex-1 items-center gap-3 md:py-4 justify-between mb-2'>
+        <div className='w-full flex flex-1 text-center items-center gap-3 md:py-4 justify-between mb-2'>
 
-            <div className='w-full flex justify-between gap-2 items-center'>
-                <img
+            <div className='w-full flex justify-between gap-2 items-center text-center'>
+                <Avatar
                     src={user?.profileUrl}
-                    alt='user image'
-                    className='w-10 h-10 md:w-14 md:h-14 rounded-full bg-blue object-cover'
+                    sx={{ width: 50, height: 50 }}
                 />
 
                 <TextInput
                     name='comment'
-                    styles='w-full rounded-full md:py-3 py-[10px] mb-2 '
+                    styles='w-full rounded-full md:py-3 py-[10px] mb-2 px-4 items-center '
                     placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
                     register={register("comment", { required: "Comment is required" })}
                     error={errors?.comment ? errors.comment.message : ""}
@@ -183,14 +184,21 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
     };
 
 
+
     return (
         <motion.div
             variants={variant1(0.4)} initial='hidden' whileInView={'show'}
             className='mb-1 md:p-2 rounded-md md:border text-ascent-2 bg-bg2 scroll-smooth'>
 
             <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
-                <Link to={'/profile/' + post?.userId?._id}>
-                    <img src={post?.userId?.profileUrl} alt={post?.userId?.firstName} className='w-12 h-10 md:w-16 md:h-14 rounded-full object-cover' />
+                <Link to={'/profile/' + post?.userId?._id} >
+
+                    <Avatar
+                        src={post?.userId?.profileUrl}
+                        alt={post?.userId?.firstName}
+                        sx={{ width: 60, height: 60 }}
+
+                    />
 
                 </Link>
 

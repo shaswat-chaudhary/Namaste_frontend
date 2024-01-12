@@ -19,6 +19,7 @@ export const EditProfile = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [picture, setPicture] = useState(null);
 
+
   const {
     register, handleSubmit, formState: { errors },
   } = useForm({ mode: "onChange", defaultValues: { ...user }, });
@@ -118,29 +119,39 @@ export const EditProfile = () => {
                     <GoCheck />
                   </button>
                 )}
-
               </div>
             </div>
 
-            <div className='relative cursor-pointer border-b'>
-              <input
-                accept="image/*"
-                className='bg-red opacity-0 absolute'
-                id="contained-button-file"
-                multiple
-                type="file"
-              />
-              <label htmlFor="contained-button-file" className='flex flex-col items-center gap-2 cursor-pointer text-blue'>
-                <Avatar
-                  src={user.profileUrl ?? ''}
-                  sx={{ width: 70, height: 70 }}
-                  onChange={(e) => handleSelect(e)}
-                  accept='.jpg, .png, .jpeg'
-                  type='file'
-                  id='imgUpload'
-                />
+            <div className='relative cursor-pointer w-24 h-24 rounded-full items-center ring-1 ring-ascent-1'>
+              <label
+                className='absolute top-24 left-2 text-base text-ascent-1 text-center border-b'
+                htmlFor='imgUpload'>
                 Edit Picture
               </label>
+
+              <input
+                className='w-24 h-24 rounded-full absolute z-10 opacity-0 left-0 top-0 cursor-pointer'
+                id="profileImage"
+                onChange={(e) => handleSelect(e)}
+                accept='image/*'
+                type="file"
+
+              />
+
+              {
+                picture === null ? (
+                  <Avatar
+                    sx={{ width: 96, height: 96 }}
+                    src={user?.profileUrl}
+                  />
+                ) : (
+                  <Avatar
+                    sx={{ width: 96, height: 96 }}
+                    src={URL.createObjectURL(picture)}
+                  />
+                )
+              }
+
             </div>
 
             <TextInput

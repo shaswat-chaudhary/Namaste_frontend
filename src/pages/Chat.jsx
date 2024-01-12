@@ -1,5 +1,6 @@
 import React from 'react'
-import { DownBar, TopBar } from '../components'
+import { DownBar } from '../components'
+
 
 export const Chat = () => {
   return (
