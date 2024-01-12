@@ -47,10 +47,10 @@ export const DownBar = () => {
                     <Avatar
                         src={user?.profileUrl}
                         className='ring-1 ring-[#D332FC]'
-                        sx={{ width: 28, height: 28 }}
+                        sx={{ width: 29, height: 29 }}
                     /> : <Avatar
                         src={user?.profileUrl}
-                        sx={{ width: 28, height: 28 }}
+                        sx={{ width: 29, height: 29 }}
                     />
 
                 }

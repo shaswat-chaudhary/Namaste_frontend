@@ -122,16 +122,16 @@ export const EditProfile = () => {
               </div>
             </div>
 
-            <div className='relative cursor-pointer w-24 h-24 rounded-full items-center ring-1 ring-ascent-1'>
+            <div className='relative cursor-pointer rounded-full w-24 h-24 items-center ring-1 ring-ascent-1 '>
               <label
-                className='absolute top-24 left-2 text-base text-ascent-1 text-center border-b'
+                className='absolute top-24 left-3 text-sm text-ascent-1 pt-1 cursor-pointer text-center border-b'
                 htmlFor='imgUpload'>
                 Edit Picture
               </label>
 
               <input
                 className='w-24 h-24 rounded-full absolute z-10 opacity-0 left-0 top-0 cursor-pointer'
-                id="profileImage"
+                id="imgUpload"
                 onChange={(e) => handleSelect(e)}
                 accept='image/*'
                 type="file"
@@ -156,7 +156,7 @@ export const EditProfile = () => {
 
             <TextInput
               label='First Name'
-              labelStyles='text-ascent-2'
+              labelStyles='text-ascent-2 mt-3'
               placeholder='First Name'
               type='text'
               styles='w-full bg-bgColor px-0 text-ascent-1 font-medium border-blue bg-transparent border-0 border-b-2 rounded-none '

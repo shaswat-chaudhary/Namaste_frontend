@@ -196,7 +196,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     <Avatar
                         src={post?.userId?.profileUrl}
                         alt={post?.userId?.firstName}
-                        sx={{ width: 60, height: 60 }}
+                        sx={{ width: 50, height: 50 }}
 
                     />
 
