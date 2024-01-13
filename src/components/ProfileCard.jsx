@@ -27,7 +27,7 @@ export const ProfileCard = ({ user }) => {
 
     return (
 
-        <div className='w-full md:border flex flex-col items-center rounded-md md:rounded-lg px-6 py-4 shadow-sm bg-bg2 text-ascent-2'>
+        <div className='w-full md:border flex flex-col items-center rounded-md md:rounded-lg px-3 md:px-6 py-4 shadow-sm bg-bg2 text-ascent-2'>
 
             <div className='w-full flex flex-col items-start gap-3 border-b pb-3 '>
 

@@ -197,7 +197,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
     return (
         <motion.div
             variants={variant1(0.4)} initial='hidden' whileInView={'show'}
-            className='mb-1 md:p-2 rounded-md md:border text-ascent-2 bg-bg2 scroll-smooth'>
+            className='mb-1.5 md:p-2 rounded-md md:border text-ascent-2 bg-bg2 scroll-smooth'>
 
             <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
                 <Link to={'/profile/' + post?.userId?._id} >

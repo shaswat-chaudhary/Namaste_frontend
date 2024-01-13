@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export const FriendsCard = ({ friends }) => {
 
     return (
-        <div className='w-full shadow-sm rounded-lg px-6 py-5 md:border text-ascent-2 bg-bg2'>
+        <div className='w-full shadow-sm rounded-lg md:px-6 px-3 py-5 md:border text-ascent-2 bg-bg2'>
 
             <div className='flex items-center justify-between text-xl pb-2 border-b'>
                 <span className='text-ascent-1'>Friends</span>

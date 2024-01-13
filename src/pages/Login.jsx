@@ -16,8 +16,6 @@ export const Login = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
 
-  console.log(errMsg);
-
   const { register, handleSubmit, formState: { errors }, } = useForm({ mode: "onChange" });
 
   const onSubmit = async (data) => {

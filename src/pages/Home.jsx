@@ -128,9 +128,9 @@ export const Home = () => {
 
           {/* Center */}
 
-          <div className='flex-1 h-full  md:px-4 flex flex-col md:gap-4 overflow-y-auto md:rounded-lg'>
+          <div className='flex-1 h-full md:px-4 flex flex-col md:gap-4 overflow-y-auto md:rounded-lg'>
 
-            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg md:border text-ascent-2 bg-bg2 mb-1'>
+            <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg md:border text-ascent-2 bg-bg2 mb-1.5'>
 
               <div className='w-full flex gap-4 py-1 items-center text-center border-b justify-between'>
 
@@ -166,7 +166,7 @@ export const Home = () => {
 
 
               {/* file upload  */}
-              <div className='flex items-center justify-between py-1 md:py-4'>
+              <div className='flex items-center justify-between py-2 md:py-4'>
 
                 {/* image upload */}
                 <label htmlFor='imgUpload' className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer'>

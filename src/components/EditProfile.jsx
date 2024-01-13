@@ -193,7 +193,7 @@ export const EditProfile = () => {
             />
             {
               errMsg?.message && (
-                <span role='alert' className={`text-sm ${errMsg?.status === 'failed' ? "text-red-600" : "text-green-700"}`}>
+                <span role='alert' className={`text-sm ${errMsg?.status === 'failed' ? "text-[#f64949fe]" : "text-[#2ba150fe]"}`}>
                   {errMsg?.message}
                 </span>
               )
