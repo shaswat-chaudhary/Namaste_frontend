@@ -9,6 +9,7 @@ import { Logout } from '../redux/userSlice';
 import moment from 'moment';
 import { ThemeMode } from './ThemeMode';
 import { Avatar } from '@mui/material';
+import { useState } from 'react';
 
 export const ProfileCard = ({ user }) => {
 
@@ -17,12 +18,14 @@ export const ProfileCard = ({ user }) => {
     const dispatch = useDispatch();
 
     const handleShareClick = async () => {
+
         (navigator.share) ? navigator.share({
             title: "Profile",
             text: "Check out this profile",
             url: "https://namaste-sooty.vercel.app/profile/" + user?._id
         }) : alert("Your browser does not support Web Share API")
     }
+
 
 
     return (
@@ -70,7 +73,7 @@ export const ProfileCard = ({ user }) => {
                     <div className='grow bg-bgColor text-center items-center rounded-md'>
                         {user?._id === data?._id ?
                             (
-                                <button onClick={() => dispatch(UpdateProfile(true))} className='text-ascent-1 font-normal w-full h-full rounded-md py-1 hover:text-blue'>
+                                <button onClick={() => dispatch(UpdateProfile(true))} className='text-ascent-1 font-normal w-full h-full rounded-md py-1'>
                                     Edit Profile
                                 </button>
                             ) : (
@@ -80,8 +83,8 @@ export const ProfileCard = ({ user }) => {
 
                     <div className="grow text-center rounded-md bg-bgColor">
                         <button
-                            onClick={() => handleShareClick(true)}
-                            className='text-ascent-1 font-normal w-full rounded-md h-full py-1 hover:text-blue'>
+                            onClick={handleShareClick}
+                            className='text-ascent-1 font-normal w-full rounded-md h-full py-1'>
                             Share Profile
                         </button>
                     </div>
