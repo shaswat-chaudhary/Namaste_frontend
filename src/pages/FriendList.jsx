@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { apiRequest } from '../utils/index'
 import { sendFriendReq } from '../utils/index'
 import toast from 'react-hot-toast'
+import { Loading } from '../components/Loading'
 
 
 export const FriendList = () => {
@@ -15,6 +16,8 @@ export const FriendList = () => {
   const [friendRequest, setFriendRequest] = useState([]);
 
   const [suggestFriends, setSuggestFriends] = useState([]);
+
+  const [loading, setLoading] = useState(false);
 
 
   const fetchFriendReq = async () => {
@@ -46,6 +49,7 @@ export const FriendList = () => {
       });
 
       setSuggestFriends(res?.data)
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -85,7 +89,7 @@ export const FriendList = () => {
   };
 
   useEffect(() => {
-
+    setLoading(true);
     fetchFriendReq();
     fetchSuggestFriend();
   }, [])
@@ -116,19 +120,27 @@ export const FriendList = () => {
           <div className='flex items-center justify-between text-xl border-b pb-2'>
             <span className='text-ascent-1'>Friend Suggestion</span>
           </div>
-          <div className='w-full flex flex-col gap-4 pt-4 '>
+          <div className='w-full flex flex-col pt-4 '>
             {
-              <SuggestFriend
-                suggestFriends={suggestFriends}
-                handlefriendReq={handlefriendReq}
-                friendRequest={friendRequest}
-              />
+              loading ? (<Loading />) : suggestFriends?.length > 0 ? (
+                <SuggestFriend
+                  suggestFriends={suggestFriends}
+                  handlefriendReq={handlefriendReq}
+                  friendRequest={friendRequest}
+                />
+              ) : (
+                <>
+                  <p>
+                    No Friend Suggestion
+                  </p>
+                </>
+              )
+
             }
           </div>
 
         </div>
       </div>
-
 
     </div>
   )

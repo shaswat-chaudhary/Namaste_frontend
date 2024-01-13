@@ -16,6 +16,7 @@ export const Login = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
 
+  console.log(errMsg);
 
   const { register, handleSubmit, formState: { errors }, } = useForm({ mode: "onChange" });
 
@@ -30,20 +31,21 @@ export const Login = () => {
         method: "POST",
       });
 
-      if (res?.status === "Failed") {
+      if (res?.status === "failed") {
         setErrMsg(res);
+        console.log(errMsg);
       }
       else {
         setErrMsg("");
 
-        const newData = { token: res?.token, user: res?.user };
+        const newData = { token: res?.token, ...res?.user };
         dispatch(LoginUser(newData));
         window.location.replace("/");
       }
       setIsSubmit(false);
-      
+      setErrMsg(res)
+
     } catch (error) {
-      console.log(error);
       setIsSubmit(false);
     }
   }
@@ -51,22 +53,22 @@ export const Login = () => {
 
 
   return (
-    <div className='w-full h-[100vh] flex items-center justify-center p-6'>
+    <div className='w-full h-[100vh] flex items-center justify-center p-2 md:p-6'>
 
-      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 md:py-8 lg:py-0 flex border rounded-xl overflow-hidden shadow-xl '>
+      <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 md:py-8 lg:py-0 flex border rounded-xl overflow-hidden shadow-xl'>
 
         {/* LEFT SIDE  */}
 
         <div className='w-full lg:w-1/2 h-full p-4 md:p-10 2xl:px-20 flex flex-col justify-center'>
 
-          <div className='w-full flex gap-2 items-center mb-4'>
+          <div className='w-full flex md:gap-2 items-center text-center place-content-center md:place-content-start mb-1'>
             <img
               src={logo}
               className='w-14 h-14'
             />
             <span className='text-2xl font-semibold text-[#3d85a8]'>Namaste</span>
-
           </div>
+
           <p className='text-base font-semibold'>
             Log in to your account
           </p>
@@ -80,7 +82,7 @@ export const Login = () => {
 
             <TextInput
               name='email'
-              placeholder='email@example.com'
+              placeholder='email address'
               label="Email Address"
               type='email'
               register={register('email', { require: "Email is required" })}
@@ -100,17 +102,22 @@ export const Login = () => {
               error={errors?.password ? errors.password.message : ""}
             />
 
-            <Link to='/reset password' className='text-sm text-blue text-right font-semibold'>
+            <Link to='/reset password'
+              className='text-sm text-blue text-right font-semibold'>
               Forgot Password ?
             </Link>
 
-            {
-              errMsg?.message && (
-                <span className={`text-sm mt-0.5 ${errMsg?.status == 'failed' ? "text-[#f64949fe]" : "text-[#2ba150fe]"}`}>
-                  {errMsg?.message}
-                </span>
-              )
-            }
+            {errMsg?.message && (
+              <span
+                className={`text-2xl ${errMsg?.status == "failed"
+                  ? "text-[#f64949fe]"
+                  : "text-[#2ba150fe]"
+                  } mt-0.5`}
+              >
+                {errMsg?.message}
+              </span>
+
+            )}
 
             {
               isSubmit ? <Loading /> : <CustomBtn type='Submit' containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-lg font-medium text-white outline-none w-full`}
@@ -145,8 +152,6 @@ export const Login = () => {
           </div>
 
         </div>
-
-
 
       </div>
 

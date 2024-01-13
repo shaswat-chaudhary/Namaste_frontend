@@ -130,22 +130,31 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
 
         <div className='w-full flex flex-1 text-center items-center gap-3 md:py-4 justify-between mb-2'>
 
-            <div className='w-full flex justify-between gap-2 items-center text-center'>
+            <div className='w-full flex justify-between gap-3 items-center text-center'>
                 <Avatar
                     src={user?.profileUrl}
-                    sx={{ width: 50, height: 50 }}
+                    alt={user?.firstName}
+                    sx={{
+                        width: {
+                            xs: 45,
+                            md: 60,
+                        }, height: {
+                            xs: 45,
+                            md: 60,
+                        }
+                    }}
                 />
 
                 <TextInput
                     name='comment'
-                    styles='w-full rounded-full md:py-3 py-[10px] mb-2 px-4 items-center '
+                    styles='w-full rounded-full md:py-3 py-2 mb-2 px-4 items-center bg-bg3 text-ascent-1'
                     placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
-                    register={register("comment", { required: "Comment is required" })}
+                    register={register("comment")}
                     error={errors?.comment ? errors.comment.message : ""}
                 />
             </div>
 
-            <div className='flex items-center text-center p-1'>
+            <div className='flex items-center text-center'>
                 {loading ? (<Loading />) : (
                     <CustomBtn title="Submit" type="submit" containerStyles='bg-[#0444a4] text-white md:py-2 py-1 px-3 md:px-4 rounded-full text-center font-semibold text-md' />)}
             </div>
@@ -196,7 +205,17 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     <Avatar
                         src={post?.userId?.profileUrl}
                         alt={post?.userId?.firstName}
-                        sx={{ width: 50, height: 50 }}
+                        sx={{
+                            width: {
+                                xs: 50,
+                                sm: 60,
+                                md: 70
+                            }, height: {
+                                xs: 50,
+                                sm: 60,
+                                md: 70
+                            }
+                        }}
 
                     />
 
@@ -323,7 +342,19 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                                                     <Avatar
                                                         src={comment?.userId?.profileUrl}
                                                         alt={comment?.userId?.firstName}
-                                                    // className='w-10 h-10 rounded-full object-cover'
+                                                        sx={{
+                                                            width: {
+                                                                xs: 40,
+                                                                sm: 40,
+                                                                md: 50,
+                                                                lg: 50,
+                                                            }, height: {
+                                                                xs: 40,
+                                                                sm: 40,
+                                                                md: 50,
+                                                                lg: 50,
+                                                            }
+                                                        }}
                                                     />
                                                 </Link>
 

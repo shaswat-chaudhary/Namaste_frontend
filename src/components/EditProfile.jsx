@@ -115,7 +115,8 @@ export const EditProfile = () => {
 
               <div>
                 {isSubmit ? (<Loading />) : (
-                  <button type='submit' className='text-3xl text-blue font-medium'>
+                  <button type='submit' 
+                  className='text-3xl text-blue font-medium'>
                     <GoCheck />
                   </button>
                 )}

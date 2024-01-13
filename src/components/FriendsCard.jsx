@@ -19,7 +19,9 @@ export const FriendsCard = ({ friends }) => {
                         key={friend?._id}
                         className="w-full flex gap-4 items-center cursor-pointer">
 
-                        <Avatar src={friend?.profileUrl} alt={friend?.firstName}
+                        <Avatar
+                            src={friend?.profileUrl}
+                            alt={friend?.firstName}
                             sx={{ width: 50, height: 50 }}
                         />
 

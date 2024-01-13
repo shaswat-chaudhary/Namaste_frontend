@@ -2,20 +2,27 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { UpdateProfile } from '../redux/userSlice';
-import { BsBriefcase, BsPersonFillAdd } from 'react-icons/bs';
+import { BsBriefcase } from 'react-icons/bs';
 import { CiLocationOn } from 'react-icons/ci';
 import { IoLogOut } from "react-icons/io5";
 import { Logout } from '../redux/userSlice';
 import moment from 'moment';
 import { ThemeMode } from './ThemeMode';
 import { Avatar } from '@mui/material';
-import { CustomBtn } from './CustomBtn';
 
 export const ProfileCard = ({ user }) => {
 
     const { user: data, edit } = useSelector((state) => state.user);
 
     const dispatch = useDispatch();
+
+    const handleShareClick = async () => {
+        (navigator.share) ? navigator.share({
+            title: "Profile",
+            text: "Check out this profile",
+            url: "https://namaste-sooty.vercel.app/profile/" + user?._id
+        }) : alert("Your browser does not support Web Share API")
+    }
 
 
     return (
@@ -24,12 +31,27 @@ export const ProfileCard = ({ user }) => {
 
             <div className='w-full flex flex-col items-start gap-3 border-b pb-3 '>
 
-                <div className='flex items-center'>
+                <div className='flex items-center w-full'>
 
-                    <Link to={"/profile/" + user?.user?._id} className='flex items-center gap-2 z-0'>
-
-                        <Avatar src={user?.profileUrl} alt={user?.email}
-                            sx={{ width: 60, height: 60 }}
+                    <Link to={"/profile/" + user?.user?._id}
+                        className='flex items-center gap-2 z-0'
+                    >
+                        <Avatar
+                            src={user?.profileUrl}
+                            alt={user?.email}
+                            sx={{
+                                width: {
+                                    xs: 60,
+                                    sm: 60,
+                                    md: 70,
+                                    lg: 70,
+                                }, height: {
+                                    xs: 60,
+                                    sm: 60,
+                                    md: 70,
+                                    lg: 70,
+                                }
+                            }}
                         />
                         <div className='flex flex-col justify-center gap-1'>
                             <p className='text-lg font-medium text-ascent-1'>
@@ -42,24 +64,27 @@ export const ProfileCard = ({ user }) => {
                     </Link>
                 </div>
 
-                <div>
-                    {user?._id === data?._id ?
-                        (
-                            <div className="relative group ml-16">
 
-                                <CustomBtn onClick={() => dispatch(UpdateProfile(true))}
-                                    title={'Edit Profile'}
-                                    containerStyles='text-ascent-1 items-center w-full px-3 py-1 bg-bgColor rounded-md hover:text-blue' />
-                            
-                            </div>
+                <div className='flex flex-row w-full justify-between gap-5'>
 
-                        ) : (
-                            <button className='bg-[#0444a430] text-sm text-white p-1 rounded relative group:'
-                                onClick={() => { }}>
-                                <BsPersonFillAdd size={20} className='text-[bule-500]' />
-                            </button>
-                        )}
+                    <div className='grow bg-bgColor text-center items-center rounded-md'>
+                        {user?._id === data?._id ?
+                            (
+                                <button onClick={() => dispatch(UpdateProfile(true))} className='text-ascent-1 font-normal w-full h-full rounded-md py-1 hover:text-blue'>
+                                    Edit Profile
+                                </button>
+                            ) : (
+                                <></>
+                            )}
+                    </div>
 
+                    <div className="grow text-center rounded-md bg-bgColor">
+                        <button
+                            onClick={() => handleShareClick(true)}
+                            className='text-ascent-1 font-normal w-full rounded-md h-full py-1 hover:text-blue'>
+                            Share Profile
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -94,7 +119,9 @@ export const ProfileCard = ({ user }) => {
 
                 <div className='flex justify-between items-center'>
                     <span className='text-ascent-2'>Joined</span>
-                    <span className='text-ascent-1 text-base'>{moment(user?.createdAt).fromNow()}</span>
+                    <span className='text-ascent-1 text-base'>
+                        {moment(user?.createdAt).fromNow()}
+                    </span>
                 </div>
             </div>
 

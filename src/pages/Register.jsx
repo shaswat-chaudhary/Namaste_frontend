@@ -16,7 +16,15 @@ export const Register = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const dispatch = useDispatch();
 
-  const { register, handleSubmit, getValues, formState: { errors }, } = useForm({ mode: "onChange" });
+
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    formState: { errors }, } = useForm({
+      mode: "onChange"
+    });
+
 
   const onSubmit = async (data) => {
     setIsSubmit(true);
@@ -29,8 +37,9 @@ export const Register = () => {
         method: "POST",
       });
 
+      console.log(res);
 
-      if (res?.status === "Failed") {
+      if (res?.status === "failed") {
         setErrMsg(res);
       }
       else {
@@ -40,7 +49,8 @@ export const Register = () => {
         }, 3000);
       }
       setIsSubmit(false);
-    } catch (error) {
+    } 
+    catch (error) {
       console.log(error);
       setIsSubmit(false);
     }
@@ -50,7 +60,7 @@ export const Register = () => {
 
 
   return (
-    <div className='bg-slate-800 w-full h-[100vh] flex items-center justify-center p-6'>
+    <div className='bg-slate-800 w-full h-[100vh] flex items-center justify-center p-2 md:p-6'>
 
       <div className='w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 lg:py-0 flex flex-row-reverse overflow-hidden shadow-xl border rounded-xl'>
 
@@ -58,14 +68,14 @@ export const Register = () => {
 
         <div className='w-full lg:w-1/2 h-full px-3 pb-2 md:p-10 2xl:px-20 flex flex-col justify-center'>
 
-          <div className='w-full flex gap-2 items-center md:mb-4'>
+          <div className='w-full flex md:gap-1 items-center place-content-center md:place-content-start md:mb-4'>
             <img src={logo}
               className='w-14 h-14' />
 
-            <span className='text-xl md:text-2xl text-[#3d85a8] font-semibold'>Namaste</span>
+            <span className='text-2xl md:text-2xl text-[#3d85a8] font-semibold'>Namaste</span>
 
           </div>
-          <p className='text-lg font-semibold'>
+          <p className='text-base font-semibold'>
             Create Your Account
           </p>
 
@@ -101,7 +111,7 @@ export const Register = () => {
 
             <TextInput
               name='email'
-              placeholder='email@example.com'
+              placeholder='Email@gmail.com'
               label="Email Address"
               type='email'
               register={register('email', { require: "Email is required" })}
@@ -120,7 +130,7 @@ export const Register = () => {
                 register={register('password', { require: "password is required" })}
                 styles='w-full px-4'
                 labelStyles='ml-2'
-                error={errors?.password ? errors.password.message : ""}
+                error={errors?.password ? errors.password?.message : ""}
               />
 
               <TextInput
@@ -130,29 +140,40 @@ export const Register = () => {
                 type='password'
                 register={register('cPassword', {
                   validate: (value) => {
-                    if (value === getValues('password')) return true;
-                    else return "Password does not match"
+                    const { password } = getValues();
+
+                    if (password != value) {
+                      return "Passwords do not match"
+                    }
                   }
                 })}
                 styles='w-full px-4'
                 labelStyles='ml-2'
-                error={errors?.cpassword ? errors.password.message : ""}
+                error={
+                  errors.cPassword && errors.cPassword.type === 'validate' ? errors.cPassword?.message : ""
+                }
               />
-
             </div>
 
             {
-              errMsg?.message && (
-                <span className={`text-sm mt-0.5 ${errMsg?.status == 'failed' ? "text-[#f64949fe]" : "text-[#2ba150fe]"}`}>
-                  {errMsg?.message}
+              errMsg.message && (
+                <span 
+                className={`text-sm ${errMsg?.status == 'failed' ? "text-[#f64949fe]" : "text-[#2ba150fe]"} mt-0.5`}>
+                  {errMsg.message}
                 </span>
               )
             }
 
             {
-              isSubmit ? <Loading /> : <CustomBtn type='Submit' containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none w-full`}
-                title='Create Account'
-              />
+              isSubmit ? (
+                <Loading />
+              ) : (
+                <CustomBtn
+                  type='Submit'
+                  containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none w-full`}
+                  title='Create Account'
+                />
+              )
             }
           </form>
 
@@ -182,8 +203,6 @@ export const Register = () => {
           </div>
 
         </div>
-
-
 
       </div>
 

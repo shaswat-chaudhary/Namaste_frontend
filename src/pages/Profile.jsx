@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom'
 import { FriendsCard, Loading, PostCard, ProfileCard } from '../components';
 import { DownBar } from '../components/DownBar';
 import { EditProfile } from '../components/EditProfile';
-import { Avatar } from '@mui/material';
 
 
 export const Profile = () => {
@@ -31,7 +30,7 @@ export const Profile = () => {
           {/* Left */}
 
           <div className='md:w-1/3 lg:w-1/4 w-full flex flex-col gap-6 overflow-hidden'>
-            <ProfileCard user={userInfo} key={user} />
+            <ProfileCard user={userInfo}  />
 
           </div>
 

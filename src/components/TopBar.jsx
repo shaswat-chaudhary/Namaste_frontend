@@ -40,13 +40,18 @@ export const TopBar = () => {
 
             </Link>
 
-            <form className='bg-blue rounded-full hidden h-10 pb-2 md:flex items-center justify-center relative' onSubmit={handleSubmit(handleSearch)}>
-
-                <TextInput placeholder='Search....' styles=' w-[16rem] h-10 lg:w-[24rem] px-4 py-3 rounded-full border-white' register={register('search')}
+            <form
+                className='bg-blue rounded-full hidden h-10 pb-2 md:flex items-center justify-center relative'
+                onSubmit={handleSubmit(handleSearch)}
+            >
+                <TextInput
+                    placeholder='Search....'
+                    styles=' w-[16rem] h-10 lg:w-[24rem] px-4 py-3 rounded-full border-white' register={register('search')}
                 />
 
-                <IoSearchSharp className='text-2xl absolute right-3 top-2 cursor-pointer text-ascent-2' />
-
+                <IoSearchSharp
+                    className='text-2xl absolute right-3 top-2 cursor-pointer text-ascent-2'
+                />
 
             </form>
 
@@ -64,14 +69,14 @@ export const TopBar = () => {
                     <SiMessenger size={25} />
                 </div>
 
-
                 <div onClick={() => dispatch(Logout())}>
-                    <CustomBtn title='Log Out' containerStyles='text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border rounded-full transition duration-300  hover:shadow-lg hover:shadow-shadowcolor hover:bg-hovercolor' />
-                  
+                    <CustomBtn
+                        title='Log Out'
+                        containerStyles='text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border rounded-full transition duration-300  hover:shadow-lg hover:shadow-shadowcolor hover:bg-hovercolor'
+                    />
+
                 </div>
-
             </div>
-
         </div>
     )
 }

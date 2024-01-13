@@ -2,23 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomBtn, EditProfile, Loading, ProfileCard, TextInput, TopBar } from '../components';
 import { FriendsCard } from '../components/FriendsCard';
-import { Link } from 'react-router-dom';
 import { BsFiletypeGif } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import { BiImages, BiSolidVideo } from 'react-icons/bi'
 import { PostCard } from '../components/PostCard';
 import { LoginUser } from '../redux/userSlice';
 import {
-  apiRequest, deletePost, fetchPosts, getUserInfo, handleFileUpload, likePost, sendFriendReq
+  apiRequest, deletePost, fetchPosts, getUserInfo, handleFileUpload, likePost
 } from '../utils/index';
-import { MdDownloadDone } from "react-icons/md";
-import { FaCheck, FaTimes } from 'react-icons/fa';
-import { IoPersonAdd } from "react-icons/io5";
 import toast from 'react-hot-toast';
 import { DownBar } from '../components/DownBar';
-import { FriendReq } from '../components/FriendReq';
-import { SuggestFriend } from '../components/SuggestFriend';
 import { FriendList } from './FriendList';
+import { Avatar } from '@mui/material';
 
 
 export const Home = () => {
@@ -108,7 +103,7 @@ export const Home = () => {
     setLoading(true);
     getUser();
     fetchPost();
-   
+
   }, [])
 
   return (
@@ -137,24 +132,34 @@ export const Home = () => {
 
             <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg md:border text-ascent-2 bg-bg2 mb-1'>
 
-              <div className='w-full flex items-end pt-1 md:pt-3 pb-4 border-b justify-between'>
+              <div className='w-full flex gap-4 py-1 items-center text-center border-b justify-between'>
 
-                <div>
-                  <img src={user?.profileUrl}
-                    alt='User Image'
-                    className='w-11 h-11 md:w-14 md:h-14 rounded-full object-cover'
-                  />
-                </div>
+                <Avatar
+                  src={user?.profileUrl}
+                  alt='User Image'
+                  sx={{
+                    width: {
+                      xs: 45,
+                      sm: 55,
+                      md: 60,
+                      lg: 60,
+                    }, height: {
+                      xs: 45,
+                      sm: 55,
+                      md: 60,
+                      lg: 60,
+                    }
+                  }}
+                />
 
-                <div className='w-[85%]'>
-                  <TextInput
-                    styles="w-full rounded-full py- md:py-[13px] flex px-4"
-                    placeholder="what's on your mind..."
-                    name="description"
-                    register={register('description', { required: "Write something about post" })}
-                    error={error?.description ? error.description.message : ""}
-                  />
-                </div>
+                <TextInput
+                  styles="w-full rounded-full bg-bg3 text-ascent-2 py-2.5 md:py-4 items-center px-4 mb-1.5"
+                  placeholder="what's on your mind..."
+                  name="description"
+                  register={register('description', { required: "Write something about post" })}
+                  error={error?.description ? error.description.message : ""}
+                />
+
 
 
               </div>
@@ -178,7 +183,9 @@ export const Home = () => {
                 </label>
 
                 {/* video upload */}
-                <label htmlFor='videoUpload' className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer'>
+                <label htmlFor='videoUpload'
+                  className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer'
+                >
                   <input
                     type='file'
                     onChange={(e) => setFile(e.target.files[0])}
@@ -192,7 +199,9 @@ export const Home = () => {
                 </label>
 
                 {/* gif upload */}
-                <label htmlFor='vgifUpload' className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer'>
+                <label htmlFor='vgifUpload'
+                  className='flex items-center gap-1 text-base text-ascent-2 hover:text-ascent-1 cursor-pointer'
+                >
                   <input
                     type='file'
                     onChange={(e) => setFile(e.target.files[0])}

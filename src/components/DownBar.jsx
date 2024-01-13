@@ -23,42 +23,48 @@ export const DownBar = () => {
     return (
         <div className='flex w-full h-12 bg-bg3 justify-between items-center sticky top-0 z-50 px-5 md:hidden text-ascent-1 '>
 
-            <Link to='/' onClick={() => handleCurrentPage('/')} className='w-10 h-10 p-1.5'>
-                {currentPage === '/' ? <GoHomeFill size={27} /> : <GoHome size={27} />}
+            <Link to='/'
+                onClick={() => handleCurrentPage('/')}
+                className='w-10 h-10 p-1.5'>
+                {
+                    currentPage === '/' ? <GoHomeFill size={28} /> : <GoHome size={28} />
+                }
             </Link>
 
-            <Link to='/friends' className='w-10 h-10 p-1 flex items-center'>
-                {currentPage === '/friends' ? <HiMiniUsers size={27} /> : <HiOutlineUsers size={27} />}
-
-            </Link>
-
-
-            <div className='w-10 h-10 p-2'>
-                <GoSearch size={25} />
-            </div>
-
-            <Link to='/chat' onClick={() => handleCurrentPage('/chat')} className=' p-1'>
-                {currentPage === '/chat' ? <RiMessengerFill size={28} /> : <RiMessengerLine size={28} />}
-            </Link>
-
-
-            <Link to="/profile/:id" onClick={() => handleCurrentPage('/profile/:id')} >
-                {currentPage === '/profile/:id' ?
-                    <Avatar
-                        src={user?.profileUrl}
-                        className='ring-1 ring-[#D332FC]'
-                        sx={{ width: 29, height: 29 }}
-                    /> : <Avatar
-                        src={user?.profileUrl}
-                        sx={{ width: 29, height: 29 }}
-                    />
-
+            <Link to='/friends'
+                className='w-10 h-10 p-1 flex items-center'>
+                {
+                    currentPage === '/friends' ? <HiMiniUsers size={28} /> : <HiOutlineUsers size={28} />
                 }
 
             </Link>
 
+            <div className='w-10 h-10 p-1.5'>
+                <GoSearch size={27} />
+            </div>
 
+            <Link to='/chat'
+                onClick={() => handleCurrentPage('/chat')}
+                className=' p-1'>
+                {
+                    currentPage === '/chat' ? <RiMessengerFill size={29} /> : <RiMessengerLine size={29} />
+                }
+            </Link>
 
+            <Link to="/profile/:id"
+                onClick={() => handleCurrentPage('/profile/:id')} >
+                {
+                    currentPage === '/profile/:id' ?
+                        <Avatar
+                            src={user?.profileUrl}
+                            className='ring-1 ring-[#D332FC]'
+                            sx={{ width: 29, height: 29 }}
+                        /> : <Avatar
+                            src={user?.profileUrl}
+                            sx={{ width: 29, height: 29 }}
+                        />
+                }
+            </Link>
         </div>
     )
 }
