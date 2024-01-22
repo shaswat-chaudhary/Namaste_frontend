@@ -19,7 +19,7 @@ const userSlice = createSlice({
         },
         updateProfile(state, action) {
             state.edit = action.payload;
-        }
+        },
     }
 });
 

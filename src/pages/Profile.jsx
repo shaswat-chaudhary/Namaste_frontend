@@ -1,23 +1,47 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { FriendsCard, Loading, PostCard, ProfileCard } from '../components';
 import { DownBar } from '../components/DownBar';
 import { EditProfile } from '../components/EditProfile';
+import { fetchPosts, getUserInfo } from '../utils';
 
 
 export const Profile = () => {
 
   const { id } = useParams();
+
   const dispatch = useDispatch();
+
   const { user, edit } = useSelector((state) => state.user);
   const { posts } = useSelector((state) => state.posts);
+
+  const data = user?._id === id ? user : null;
 
   const [userInfo, setUserInfo] = useState(user);
   const [loading, setLoading] = useState(false);
 
+  const uri = '/posts/get-user-post/' + id;
+
+  const getUser = async () => {
+    const res = await getUserInfo(user?.token, id);
+    setUserInfo(res);
+
+  }
+
+  const getPosts = async () => {
+    await fetchPosts(user.token, dispatch, uri);
+    setLoading(false);
+  }
+
   const handleDelete = () => { };
   const handleLikePost = () => { };
+
+  useEffect(() => {
+    setLoading(true);
+    getUser();
+    getPosts();
+  }, [id])
 
   return (
     <>
@@ -30,7 +54,7 @@ export const Profile = () => {
           {/* Left */}
 
           <div className='md:w-1/3 lg:w-1/4 w-full flex flex-col gap-6 overflow-hidden'>
-            <ProfileCard user={userInfo}  />
+            <ProfileCard user={userInfo} />
 
           </div>
 
@@ -50,7 +74,7 @@ export const Profile = () => {
               ))
               ) : (
                 <div className='w-full h-full flex items-center justify-center'>
-                  <p className='text-lg text-ascent-2'>No Post</p>
+                  <p className='text-lg text-ascent-2'>No Post Available</p>
                 </div>
               )}
           </div>

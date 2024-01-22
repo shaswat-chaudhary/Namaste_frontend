@@ -5,11 +5,12 @@ import { Register } from './pages';
 import { Profile } from './pages';
 import { Login } from './pages';
 import { ResetPassword } from './pages';
-import { Outlet, Route, Routes, Navigate, useLocation} from 'react-router-dom';
+import { Outlet, Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { Search } from './pages/Search';
 
 
 function Layout() {
-  const {user} = useSelector(state => state.user);
+  const { user } = useSelector(state => state.user);
   const loaction = useLocation();
 
   return user?.token ? (<Outlet />) : (
@@ -27,9 +28,10 @@ function App() {
       <Routes>
         <Route element={<Layout />} >
           <Route path="/" element={<Home />} />
-          <Route path="/profile/:id" element={<Profile />} />
-          <Route path="/friends" element={<FriendList/>} />
-          <Route path='/chat' element={<Chat/>} />
+          <Route path="/profile/:id?" element={<Profile />} />
+          <Route path="/friends" element={<FriendList />} />
+          <Route path='/chat' element={<Chat />} />
+          <Route path='/search' element={<Search />} />
         </Route>
 
         <Route path="/register" element={<Register />} />

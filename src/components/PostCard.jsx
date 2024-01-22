@@ -149,7 +149,7 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
                     name='comment'
                     styles='w-full rounded-full md:py-3 py-2 mb-2 px-4 items-center bg-bg3 text-ascent-1'
                     placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
-                    register={register("comment")}
+                    register={register("comment", {required: "Write a comment"})} 
                     error={errors?.comment ? errors.comment.message : ""}
                 />
             </div>

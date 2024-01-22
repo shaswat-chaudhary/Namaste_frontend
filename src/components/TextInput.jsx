@@ -25,7 +25,7 @@ export const TextInput = React.forwardRef((
 
             <div>
                 <input
-                    className={`rounded border border-[#66666690] outline-none px- py-2 placeholder:text-[#66666690] ${styles}`}
+                    className={`rounded border border-[#66666690] outline-none py-2 placeholder:text-[#66666690] ${styles}`}
                     type={type}
                     name={name}
                     placeholder={placeholder}

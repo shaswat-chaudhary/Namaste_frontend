@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { SetPosts } from '../redux/postSlice';
 
-const API_URL = "https://namaste-2st2.onrender.com"
-// const API_URL = "http://localhost:3001"
+// const API_URL = "https://namaste-2st2.onrender.com"
+const API_URL = "http://localhost:3001"
 
 
 export const API = axios.create({
@@ -127,7 +127,7 @@ export const sendFriendReq = async (token, id) => {
             url: "users/friend-request",
             token: token,
             method: "POST",
-            data: { requestTo: id },
+            data: { requestTo: id,},
         });
         console.log(res, "send friend request");
         return res;
@@ -154,11 +154,11 @@ export const viewUserProfile = async (token, id) => {
 export const searchUser = async (token, query) => {
     try {
         const res = await apiRequest({
-            url: "/users/search",
+            url: "/users/search?search=",
             token: token,
-            method: "POST",
+            method: "GET",
             data: { query },
-        });
+        });       
         return res;
     } catch (error) {
         console.log(error);

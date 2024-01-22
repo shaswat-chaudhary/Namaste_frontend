@@ -11,7 +11,7 @@ import { ThemeMode } from './ThemeMode';
 import { Avatar } from '@mui/material';
 import { useState } from 'react';
 
-export const ProfileCard = ({ user }) => {
+export const ProfileCard = ({ user, handlefriendReq }) => {
 
     const { user: data, edit } = useSelector((state) => state.user);
 
@@ -36,12 +36,12 @@ export const ProfileCard = ({ user }) => {
 
                 <div className='flex items-center w-full'>
 
-                    <Link to={"/profile/" + user?.user?._id}
+                    <Link to={"/profile/" + user?._id}
                         className='flex items-center gap-2 z-0'
                     >
                         <Avatar
                             src={user?.profileUrl}
-                            alt={user?.email}
+                            alt={user?.firstName}
                             sx={{
                                 width: {
                                     xs: 60,
@@ -70,23 +70,34 @@ export const ProfileCard = ({ user }) => {
 
                 <div className='flex flex-row w-full justify-between gap-5'>
 
-                    <div className='grow bg-bgColor text-center items-center rounded-md'>
-                        {user?._id === data?._id ?
-                            (
-                                <button onClick={() => dispatch(UpdateProfile(true))} className='text-ascent-1 font-normal w-full h-full rounded-md py-1'>
-                                    Edit Profile
-                                </button>
-                            ) : (
-                                <></>
-                            )}
+                    <div className='grow bg-bgColor w-1/2 text-center items-center rounded-md'>
+                        {
+                            user?._id === data?._id ?
+                                (
+                                    <button onClick={() => dispatch(UpdateProfile(true))} className='text-ascent-1 font-normal w-full h-full rounded-md py-1'>
+                                        Edit Profile
+                                    </button>
+                                ) : (
+
+                                    <Link to={'/chat'}>
+                                        <button
+                                            className='text-ascent-1 font-normal w-full rounded-md h-full py-1'>
+                                            Message
+                                        </button>
+                                    </Link>
+                                )
+                        }
                     </div>
 
-                    <div className="grow text-center rounded-md bg-bgColor">
-                        <button
-                            onClick={handleShareClick}
-                            className='text-ascent-1 font-normal w-full rounded-md h-full py-1'>
-                            Share Profile
-                        </button>
+                    <div className="grow w-1/2 text-center rounded-md bg-bgColor">
+                        {user?._id === user?._id && (
+                            <button
+                                onClick={() => handleShareClick()}
+                                className='text-ascent-1 font-normal w-full rounded-md h-full py-1'>
+                                Share Profile
+                            </button>
+                        )}
+
                     </div>
                 </div>
 
@@ -128,15 +139,23 @@ export const ProfileCard = ({ user }) => {
                 </div>
             </div>
 
-            <div className='flex md:hidden justify-between items-center w-full px-4 py-2 mt-5 bg-bgColor rounded-lg text-ascent-1'>
-                <span className='font-semibold text-ascent-1'>Theme Change</span>
-                <ThemeMode />
-            </div>
+            {user?._id === data?._id && (
+                <>
+                    <div className='flex md:hidden justify-between items-center w-full px-4 py-2 mt-5 bg-bgColor rounded-lg text-ascent-1'>
+                        <span className='font-semibold text-ascent-1'>Log Out</span>
+                        <IoLogOut onClick={() => dispatch(Logout())} size={25} />
+                    </div>
 
-            <div className='flex md:hidden justify-between items-center w-full px-4 py-2 mt-5 bg-bgColor rounded-lg text-ascent-1'>
-                <span className='font-semibold text-ascent-1'>Log Out</span>
-                <IoLogOut onClick={() => dispatch(Logout())} size={25} />
-            </div>
+                    <div className='flex md:hidden justify-between items-center w-full px-4 py-2 mt-5 bg-bgColor rounded-lg text-ascent-1'>
+                        <span className='font-semibold text-ascent-1'>Theme Change</span>
+                        <ThemeMode />
+                    </div>
+                </>
+            )}
+
+
+
+
 
         </div>
     )

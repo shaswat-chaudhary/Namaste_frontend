@@ -136,7 +136,7 @@ export const Home = () => {
 
                 <Avatar
                   src={user?.profileUrl}
-                  alt='User Image'
+                  alt={user?.firstName}
                   sx={{
                     width: {
                       xs: 45,
