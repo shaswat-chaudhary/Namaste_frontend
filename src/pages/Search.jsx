@@ -4,19 +4,18 @@ import { DownBar } from '../components';
 import { searchUser } from '../utils';
 import { Avatar } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { RxCross1} from 'react-icons/rx';
+import { RxCross1 } from 'react-icons/rx';
 
 export const Search = () => {
 
     const { user } = useSelector((state) => state.user);
 
-    const [AllUser, setAllUser] = useState([])
+    const [AllUser, setAllUser] = useState([]);
 
     const AllUsers = async () => {
         const res = await searchUser(user?.token);
         setAllUser(res?.users)
     }
-
     useEffect(() => {
         AllUsers();
     }, [])
@@ -29,8 +28,10 @@ export const Search = () => {
         const val = e.target.value;
         setSearch(val);
 
-        const filter = AllUser.filter((item) => item.firstName.toLowerCase().includes(val.toLowerCase()));
-
+        const filter = AllUser.filter((item) =>
+            item.firstName.toLowerCase().includes(val.toLowerCase()) ||
+            item.lastName.toLowerCase().includes(val.toLowerCase())
+        );
         setFilterUser(filter);
     }
 
@@ -51,27 +52,30 @@ export const Search = () => {
                     onChange={handleSearch}
                     className='w-full h-10 border  rounded-md outline-none px-5'
                 />
-                <RxCross1
-                    onClick={handleClear}
-                    className='absolute right-3 top-2 text-2xl cursor-pointer p-1'
-                />
+                {search?.length > 0 && (
+                    <RxCross1
+                        onClick={handleClear}
+                        className='absolute right-3 top-2 text-2xl cursor-pointer p-1'
+                    />)
+                }
             </form>
 
-
             {
-                filterUser?.map((item) => (
-                    <div key={item._id}>
-                        <Link to={'/profile/' + item?._id}  >
-                            <div className='flex flex-1 gap-5 mx-4 py-2 items-center text-center'>
-                                <Avatar src={item.profileUrl}
-                                    sx={{ width: 50, height: 50 }}
-                                />
-                                <p className='text-lg font-semibold text-ascent-1'>{item.firstName} {item.lastName}</p>
-                            </div>
-                        </Link>
-
-                    </div>
-                ))
+                search?.length > 0 && (
+                    filterUser?.map((item) => (
+                        <div key={item._id}>
+                            <Link to={'/profile/' + item?._id}  >
+                                <div className='flex flex-1 gap-5 mx-4 py-2 items-center text-center'>
+                                    <Avatar src={item.profileUrl}
+                                        sx={{ width: 50, height: 50 }}
+                                    />
+                                    <p className='text-lg font-semibold text-ascent-1'>
+                                        {item.firstName} {item.lastName}
+                                    </p>
+                                </div>
+                            </Link>
+                        </div>
+                    )))
             }
 
         </div>

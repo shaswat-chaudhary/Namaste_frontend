@@ -88,7 +88,6 @@ export const Home = () => {
     await fetchPost();
   };
 
-
   const getUser = async () => {
 
     const res = await getUserInfo(user?.token);
@@ -96,7 +95,6 @@ export const Home = () => {
     dispatch(LoginUser(newData));
 
   };
-
 
   useEffect(() => {
 
@@ -113,7 +111,6 @@ export const Home = () => {
 
         <TopBar />
         <DownBar />
-
 
         <div className="w-full flex gap-2 lg:gap-4 pt-1 md:pt-5 h-full">
 

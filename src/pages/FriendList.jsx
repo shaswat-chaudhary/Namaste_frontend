@@ -18,8 +18,6 @@ export const FriendList = () => {
 
   const [suggestFriends, setSuggestFriends] = useState([]);
 
-  console.log(suggestFriends);
-
   const [loading, setLoading] = useState(false);
 
   const fetchFriendReq = async () => {
@@ -29,7 +27,6 @@ export const FriendList = () => {
         url: 'users/get-friend-request',
         token: user?.token,
         method: 'POST'
-
       });
 
       setFriendRequest(res?.data)
@@ -54,7 +51,6 @@ export const FriendList = () => {
       console.log(error);
     }
   };
-
 
   const handlefriendReq = async (id) => {
     try {
@@ -189,9 +185,6 @@ export const FriendList = () => {
                           }
                         </button>
                       </div>
-
-
-
                     </div>
                   ))
                 }
@@ -201,10 +194,7 @@ export const FriendList = () => {
               )
             }
           </div>
-
-
         </div>
-
       </div>
     </div>
   )
