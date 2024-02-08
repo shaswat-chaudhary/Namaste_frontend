@@ -110,7 +110,6 @@ export const Home = () => {
       <div className='w-full lg:px-10 md:pb-20 2xl:px-40 lg:rounded-lg h-screen overflow-auto bg-bgColor scroll-smooth'>
 
         <TopBar />
-        <DownBar />
 
         <div className="w-full flex gap-2 lg:gap-4 pt-1 md:pt-5 h-full">
 
@@ -259,6 +258,8 @@ export const Home = () => {
           </div>
 
         </div>
+
+        <DownBar />
 
 
       </div>

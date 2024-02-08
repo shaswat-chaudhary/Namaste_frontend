@@ -10,7 +10,6 @@ import { MdDelete } from 'react-icons/md';
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { BsChat } from "react-icons/bs";
-import { motion } from 'framer-motion';
 import { variant1 } from '../utils/motion';
 import Avatar from '@mui/material/Avatar';
 
@@ -195,8 +194,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
 
     return (
-        <motion.div
-            variants={variant1(0.4)} initial='hidden' whileInView={'show'}
+        <div
             className='mb-1.5 md:p-2 rounded-md md:border text-ascent-2 bg-bg2 scroll-smooth'>
 
             <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
@@ -461,6 +459,6 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     </div>
                 )
             }
-        </motion.div>
+        </div>
     )
 }
