@@ -10,6 +10,7 @@ import moment from 'moment';
 import { ThemeMode } from './ThemeMode';
 import { Avatar } from '@mui/material';
 import { useState } from 'react';
+import { IoIosArrowRoundBack } from 'react-icons/io'
 
 export const ProfileCard = ({ user, handlefriendReq }) => {
 
@@ -26,11 +27,23 @@ export const ProfileCard = ({ user, handlefriendReq }) => {
         }) : alert("Your browser does not support Web Share API")
     }
 
-
+    const goBack = () => {
+        window.history.back();
+    }
 
     return (
 
-        <div className='w-full md:border flex flex-col items-center rounded-md md:rounded-lg px-3 md:px-6 py-4 shadow-sm bg-bg2 text-ascent-2'>
+        <div className='w-full md:border flex flex-col items-center rounded-md md:rounded-lg px-3 md:px-6 py-3 shadow-sm bg-bg2 text-ascent-2'>
+
+            <div className='w-full pb-2'>
+                {
+                    user?._id !== data?._id && (
+                        <div className='flex text-ascent-1' onClick={goBack}>
+                            <IoIosArrowRoundBack size={32} />
+                        </div>
+                    )
+                }
+            </div>
 
             <div className='w-full flex flex-col items-start gap-3 border-b pb-3 '>
 

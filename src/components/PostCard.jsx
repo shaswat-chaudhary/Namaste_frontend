@@ -148,7 +148,7 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
                     name='comment'
                     styles='w-full rounded-full md:py-3 py-2 mb-2 px-4 items-center bg-bg3 text-ascent-1'
                     placeholder={replyAt ? `Relpy @${replyAt}` : "Write a comment"}
-                    register={register("comment", {required: "Write a comment"})} 
+                    register={register("comment", { required: "Write a comment" })}
                     error={errors?.comment ? errors.comment.message : ""}
                 />
             </div>
@@ -199,7 +199,6 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
 
             <div className='flex gap-3 items-center mb-2 md:p-1 pl-2 pt-1 '>
                 <Link to={'/profile/' + post?.userId?._id} >
-
                     <Avatar
                         src={post?.userId?.profileUrl}
                         alt={post?.userId?.firstName}
@@ -214,9 +213,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                                 md: 70
                             }
                         }}
-
                     />
-
                 </Link>
 
                 <div className='w-full flex flex-col md:flex justify-between '>
@@ -258,8 +255,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                                         onClick={() => setShowAll(post?._id)}>
                                         Show More
                                     </span>
-                                )
-                        )
+                                ))
                     }
                 </p>
 
@@ -293,8 +289,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     onClick={() => {
                         setShowComments(showComments === post?._id ? null : post?._id);
                         getComments(post?._id)
-                    }}
-                >
+                    }}>
 
                     <BsChat size={20} />
                     {post?.comments?.length} Comments
@@ -305,10 +300,8 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                     <div className='flex gap-2 items-center text-base cursor-pointer text-ascent-1'
                         onClick={() => deletePost(post?._id)}
                     >
-
                         <MdDelete size={20} />
                         <span>Delete</span>
-
                     </div>
                 )}
 
@@ -416,7 +409,6 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                                                         replyAt={comment?.from}
                                                         getComments={() => getComments(post?._id)}
                                                     />
-
                                                 )
                                             }
                                         </div>
@@ -442,8 +434,7 @@ export const PostCard = ({ post, user, deletePost, likePost }) => {
                                                         handleLike={() => handleLike('/posts/like-comment' + comment?._id + '/' + reply?._id)}
                                                     />
 
-                                                )
-                                                )
+                                                ))
                                             }
                                         </div>
 

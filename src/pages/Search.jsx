@@ -43,8 +43,8 @@ export const Search = () => {
 
     return (
         <div className='w-full bg-bg2 h-[100vh]'>
-            <DownBar />
-            <form className='my-3 relative items-center text-center mx-3 '>
+
+            <form className='py-5 relative items-center text-center mx-3 '>
                 <input
                     type='text'
                     placeholder='Search...'
@@ -55,7 +55,7 @@ export const Search = () => {
                 {search?.length > 0 && (
                     <RxCross1
                         onClick={handleClear}
-                        className='absolute right-3 top-2 text-2xl cursor-pointer p-1'
+                        className='absolute right-3 top-7 text-2xl cursor-pointer p-1'
                     />)
                 }
             </form>
@@ -77,6 +77,8 @@ export const Search = () => {
                         </div>
                     )))
             }
+
+            <DownBar />
 
         </div>
     )

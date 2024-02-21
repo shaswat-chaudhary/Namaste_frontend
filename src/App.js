@@ -1,12 +1,13 @@
 import { useSelector } from 'react-redux';
 import './App.css';
-import { Chat, FriendList, Home } from './pages';
+import { FriendList, Home } from './pages';
 import { Register } from './pages';
 import { Profile } from './pages';
 import { Login } from './pages';
 import { ResetPassword } from './pages';
 import { Outlet, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { Search } from './pages/Search';
+import { CreatePost } from './pages';
 
 
 function Layout() {
@@ -30,8 +31,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/profile/:id?" element={<Profile />} />
           <Route path="/friends" element={<FriendList />} />
-          <Route path='/chat' element={<Chat />} />
           <Route path='/search' element={<Search />} />
+          <Route path='/create-post' element={<CreatePost />} />
         </Route>
 
         <Route path="/register" element={<Register />} />

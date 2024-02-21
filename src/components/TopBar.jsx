@@ -30,7 +30,7 @@ export const TopBar = () => {
 
     return (
 
-        <div className='sticky z-50 top-0 w-full h-12 md:h-24 flex items-center justify-between py-3 md:py-5 px-4 md:rounded-lg bg-primary border-b text-ascent-2'>
+        <div className='w-full h-12 md:h-24 flex items-center justify-between py-3 md:py-5 px-4 md:rounded-lg bg-primary border-b text-ascent-2 mb-1 sticky top-0 left-0 z-50' >
 
             <Link to='/' className='flex gap-2 items-center justify-center relative  '>
                 <div>

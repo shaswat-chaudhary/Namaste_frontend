@@ -111,7 +111,7 @@ export const Home = () => {
 
         <TopBar />
 
-        <div className="w-full flex gap-2 lg:gap-4 pt-1 md:pt-5 h-full">
+        <div className="w-full flex gap-2 lg:gap-4 md:pt-5 h-full">
 
           {/* Left */}
 
@@ -124,7 +124,7 @@ export const Home = () => {
 
           {/* Center */}
 
-          <div className='flex-1 h-full md:px-4 flex flex-col md:gap-4 overflow-y-auto md:rounded-lg'>
+          <div className='flex-1 h-full md:px-4 flex flex-col md:gap-4 overflow-x-auto md:rounded-lg'>
 
             <form onSubmit={handleSubmit(handlePostSubmit)} className='px-2 md:px-4 rounded-lg md:border text-ascent-2 bg-bg2 mb-1.5'>
 
@@ -227,6 +227,7 @@ export const Home = () => {
 
             </form>
 
+            <div className='pb-12'>
             {
               loading ? (<Loading />) : posts?.length > 0 ? (
                 posts?.map((post) => (
@@ -247,6 +248,8 @@ export const Home = () => {
                   </div>
                 )
             }
+
+              </div>
 
           </div>
 

@@ -4,7 +4,6 @@ import { Register } from "./Register";
 import { Profile } from "./Profile";
 import { ResetPassword } from "./ResetPassword";
 import { FriendList } from "./FriendList";
-import { Chat } from "./Chat";
+import { CreatePost } from "./CreatePost";
 
-
-export { Login, Home, Register, Profile, ResetPassword, FriendList, Chat };
+export { Login, Home, Register, Profile, ResetPassword, FriendList, CreatePost };

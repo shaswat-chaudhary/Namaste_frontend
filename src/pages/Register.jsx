@@ -20,8 +20,6 @@ export const Register = () => {
 
   const [step, setStep] = useState(1);
 
-  console.log(step);
-
   const {
     register,
     handleSubmit,
@@ -40,8 +38,6 @@ export const Register = () => {
   }
 
   const prevStep = () => {
-    if (step === 1) return ;
-  
     setStep((prev) => prev - 1);
   }
 
@@ -90,7 +86,7 @@ export const Register = () => {
 
           <GoArrowLeft 
             onClick={prevStep}
-            className='w-7 h-7 cursor-pointer absolute top-4 left-4'
+            className={`w-7 h-7 cursor-pointer absolute top-4 left-4 ${step === 1 ? 'hidden' : 'block'}`}
             />
             <img src={logo}
               className='w-14 h-14' />
